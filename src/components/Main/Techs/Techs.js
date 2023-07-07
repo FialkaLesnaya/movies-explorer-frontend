@@ -1,3 +1,4 @@
+import MainTitle from '../MainTitle/MainTitle';
 import './Techs.css';
 
 function Techs() {
@@ -5,7 +6,7 @@ function Techs() {
 
   return (
     <div className='techs'>
-      <h2 className='techs__title'>Технологии</h2>
+      <MainTitle title='Технологии' />
 
       <div className='techs__content'>
         <h3 className='techs__content-title'>7 технологий</h3>

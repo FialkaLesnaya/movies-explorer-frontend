@@ -1,9 +1,10 @@
+import MainTitle from '../MainTitle/MainTitle';
 import './AboutMe.css';
 
 function AboutMe() {
   return (
     <div className='about-me'>
-      <h2 className='about-me__title'>Студентка</h2>
+      <MainTitle title='Студентка' />
 
       <div className='about-me__content'>
         <div className='about-me__info'>
@@ -17,7 +18,9 @@ function AboutMe() {
             кто случайно наткнулся на него.
           </p>
 
-          <a href='#' className='about-me__link'>GitHub</a>
+          <a href='#' className='about-me__link'>
+            GitHub
+          </a>
         </div>
 
         <div className='about-me__photo'></div>

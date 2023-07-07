@@ -3,17 +3,6 @@
   background-color: #f5f5f5;
 }
 
-.techs__title {
-  padding-bottom: 23px;
-  margin: 0;
-  border-bottom: 1px solid #000;
-
-  font-size: 22px;
-  font-family: 'Inter';
-  font-weight: 400;
-  letter-spacing: -0.88px;
-}
-
 .techs__content {
   margin-top: 90px;
   display: flex;
@@ -69,7 +58,6 @@
   display: flex;
 }
 
-
 @media screen and (max-width: 1023px) {
   .techs {
     padding: 90px 50px;
@@ -99,11 +87,6 @@
 @media screen and (max-width: 767px) {
   .techs {
     padding: 70px 18px;
-  }
-
-  .techs__title {
-    font-size: 18px;
-    padding-bottom: 28px;
   }
 
   .techs__content {
