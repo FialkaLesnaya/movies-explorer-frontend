@@ -48,7 +48,7 @@
   font-weight: 500;
   color: #000;
   text-decoration: none;
-  display: block;
+  display: inline-block;
 }
 
 .about-me__info {

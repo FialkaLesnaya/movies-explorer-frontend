@@ -18,7 +18,7 @@ function AboutMe() {
             кто случайно наткнулся на него.
           </p>
 
-          <a href='#' className='about-me__link'>
+          <a href='https://github.com/FialkaLesnaya/' rel="noreferrer" target="_blank" className='about-me__link'>
             GitHub
           </a>
         </div>
