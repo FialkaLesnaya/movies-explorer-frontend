@@ -17,6 +17,11 @@
   text-decoration: none;
   width: 96px;
   height: 36px;
+  transition: opacity ease .4s;
+}
+
+.nav-tab__item {
+  opacity: 0.6;
 }
 
 .nav-tab__item + .nav-tab__item {
