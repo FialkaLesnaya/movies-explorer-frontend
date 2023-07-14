@@ -1,9 +1,10 @@
+import Logo from '../Logo/Logo';
 import './Header.css';
 
 function Header({ isMainPage }) {
   return (
     <div className='header'>
-      <a href='/' className='header__logo'></a>
+      <Logo />
 
       {!isMainPage && (
         <div className='header__nav'>
