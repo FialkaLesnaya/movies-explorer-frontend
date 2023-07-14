@@ -90,3 +90,32 @@
   border-radius: 50px;
   margin-left: 7px;
 }
+
+@media screen and (max-width: 1023px) {
+  .header {
+    padding: 18px 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    padding: 18px 14px;
+  }
+
+  .header__account-link {
+    display: none;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .header__auth-link {
+    font-size: 10px;
+  }
+
+  .header__auth-link--button {
+    width: 54px;
+    height: 26px;
+  }
+}
