@@ -4,15 +4,15 @@ function NavTab() {
   const tabs = [
     {
       title: 'О проекте',
-      link: '#',
+      link: '#about-project',
     },
     {
       title: 'Технологии',
-      link: '#',
+      link: '#techs',
     },
     {
       title: 'Студент',
-      link: '#',
+      link: '#about-me',
     },
   ];
 

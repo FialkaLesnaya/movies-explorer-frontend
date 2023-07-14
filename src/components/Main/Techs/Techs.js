@@ -5,7 +5,7 @@ function Techs() {
   const list = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
 
   return (
-    <div className='techs'>
+    <div className='techs' id="techs">
       <MainTitle title='Технологии' />
 
       <div className='techs__content'>
