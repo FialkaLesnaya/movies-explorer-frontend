@@ -4,12 +4,15 @@ function Portfolio() {
   const links = [
     {
       title: 'Статичный сайт',
+      link: 'https://fialkalesnaya.github.io/russian-travel/',
     },
     {
       title: 'Адаптивный сайт',
+      link: 'https://fialkalesnaya.github.io/russian-travel/',
     },
     {
       title: 'Одностраничное приложение',
+      link: 'https://fialkalesnaya.github.io/mesto/',
     },
   ];
 
@@ -19,11 +22,11 @@ function Portfolio() {
 
       <div className='portfolio__list'>
         {links.map((item) => (
-          <div className='portfolio__item'>
+          <a key={item.title} href={item.link} target='_blank' rel="noreferrer" className='portfolio__item'>
             <h4 className='portfolio__item-title'>{item.title}</h4>
 
             <div className='portfolio__item-icon'></div>
-          </div>
+          </a>
         ))}
       </div>
     </div>

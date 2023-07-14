@@ -37,8 +37,8 @@ function AboutProject() {
           <p className='about-project__duration-description'>Back-end</p>
         </div>
 
-        <div className='about-project__duration-item'>
-          <div className='about-project__duration-title about-project__duration-title--light'>4 недели</div>
+        <div className='about-project__duration-item about-project__duration-item--light'>
+          <div className='about-project__duration-title'>4 недели</div>
           
           <p className='about-project__duration-description'>Front-end</p>
         </div>

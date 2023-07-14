@@ -49,6 +49,11 @@
   line-height: normal;
   text-decoration: none;
   color: #000;
+  transition: opacity ease .4s;
+}
+
+.footer__link:hover {
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 1023px) {

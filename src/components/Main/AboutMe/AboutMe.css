@@ -1,5 +1,5 @@
 .about-me {
-  padding: 110px 70px;
+  padding: 110px 70px 125px 70px;
 }
 
 .about-me__photo {
@@ -49,6 +49,11 @@
   color: #000;
   text-decoration: none;
   display: inline-block;
+  transition: opacity ease .4s;
+}
+
+.about-me__link:hover {
+  opacity: 0.6;
 }
 
 .about-me__info {
