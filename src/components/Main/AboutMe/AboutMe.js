@@ -1,4 +1,5 @@
 import MainTitle from '../MainTitle/MainTitle';
+import Portfolio from '../Portfolio/Portfolio';
 import './AboutMe.css';
 
 function AboutMe() {
@@ -25,6 +26,8 @@ function AboutMe() {
 
         <div className='about-me__photo'></div>
       </div>
+
+      <Portfolio />
     </div>
   );
 }
