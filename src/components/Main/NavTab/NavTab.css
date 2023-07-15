@@ -17,11 +17,13 @@
   text-decoration: none;
   width: 96px;
   height: 36px;
-  transition: opacity ease .4s;
+  transition: opacity, backgronund ease .4s;
 }
 
-.nav-tab__item {
+.nav-tab__item:hover {
   opacity: 0.6;
+  
+  background: #000;
 }
 
 .nav-tab__item + .nav-tab__item {
