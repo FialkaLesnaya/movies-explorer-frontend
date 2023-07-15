@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Main from '../Main/Main';
 import './App.css';
+import ErrorPage from 'components/ErrorPage/ErrorPage';
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
 
         <Route
           path='*'
-          element={<div>404</div>}
+          element={<ErrorPage />}
         />
       </Routes>
     </div>
