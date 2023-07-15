@@ -2,6 +2,11 @@ import { Route, Routes } from 'react-router-dom';
 import Main from '../Main/Main';
 import './App.css';
 import ErrorPage from 'components/ErrorPage/ErrorPage';
+import Movies from 'components/Movies/Movies';
+import SavedMovies from 'components/SavedMovies/SavedMovies';
+import Profile from 'components/Profile/Profile';
+import Register from 'components/Register/Register';
+import Login from 'components/Login/Login';
 
 function App() {
   return (
@@ -11,27 +16,27 @@ function App() {
         
         <Route
           path='/movies'
-          element={<div>movies</div>}
+          element={<Movies />}
         />
 
         <Route
           path='/saved-movies'
-          element={<div>saved-movies</div>}
+          element={<SavedMovies />}
         />
 
         <Route
           path='/profile'
-          element={<div>Login</div>}
+          element={<Profile />}
         />
 
         <Route
           path='/signin'
-          element={<div>sign-in</div>}
+          element={<Login />}
         />
 
         <Route
           path='/signup'
-          element={<div>sign-in</div>}
+          element={<Register />}
         />
 
         <Route
