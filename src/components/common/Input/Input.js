@@ -2,7 +2,7 @@ import './Input.css';
 
 function Input({ isError = false, type = 'text' }) {
   return (
-    <div className={'input' + (isError ? ' input--eror' : '')}>
+    <div className={'input' + (isError ? ' input--error' : '')}>
       <label htmlFor='input-name' className='input__label'>
         Login
       </label>
