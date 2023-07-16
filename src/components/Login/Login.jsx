@@ -7,6 +7,7 @@ function Login() {
     Login
 
     <Input />
+    <Input isError />
     </div>
   );
 }

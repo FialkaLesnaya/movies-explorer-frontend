@@ -1,15 +1,20 @@
 import './Input.css';
 
-function Input() {
+function Input({ isError = false, type = 'text' }) {
   return (
-    <div className='input input--error'>
-      <label htmlFor='input-name' className='input__label'>Login</label>
+    <div className={'input' + (isError ? ' input--eror' : '')}>
+      <label htmlFor='input-name' className='input__label'>
+        Login
+      </label>
 
-      <input type='text' className='input__element' id="input-name" name='input-name' />
+      <input
+        type={type}
+        className='input__element'
+        id='input-name'
+        name='input-name'
+      />
 
-      <p className='input__error'>
-        Что-то пошло не так...
-      </p>
+      {isError && <p className='input__error'>Что-то пошло не так...</p>}
     </div>
   );
 }
