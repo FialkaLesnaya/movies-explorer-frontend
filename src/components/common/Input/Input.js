@@ -1,10 +1,10 @@
 import './Input.css';
 
-function Input({ isError = false, type = 'text', uniqId='input-name' }) {
+function Input({ isError = false, text='', type = 'text', uniqId='input-name' }) {
   return (
     <div className={'input' + (isError ? ' input--error' : '')}>
       <label htmlFor={uniqId} className='input__label'>
-        Login
+        {text}
       </label>
 
       <input
