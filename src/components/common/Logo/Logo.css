@@ -5,6 +5,7 @@
     height: 38px;
     display: block;
     transition: opacity ease 0.4s;
+    flex-shrink: 0;
   }
   
   .logo:hover {
