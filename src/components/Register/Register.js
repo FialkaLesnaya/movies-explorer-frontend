@@ -27,7 +27,7 @@ function Register() {
         </button>
 
         <p className='register__info'>
-          Уже зарегистрированы?{' '}
+          Уже зарегистрированы?{''}
           <a className='register__link' href='/signin'>
             Войти
           </a>

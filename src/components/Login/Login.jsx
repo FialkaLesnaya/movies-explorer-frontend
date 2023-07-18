@@ -18,10 +18,15 @@ function Login() {
           <Input text='Пароль' type='password' uniqId='password' />
         </div>
 
-        <button className='login__submit' type='submit'>Войти</button>
+        <button className='login__submit' type='submit'>
+          Войти
+        </button>
 
         <p className='login__info'>
-          Ещё не зарегистрированы? <a className='login__link' href='/signup'>Регистрация</a>
+          Ещё не зарегистрированы?{''}
+          <a className='login__link' href='/signup'>
+            Регистрация
+          </a>
         </p>
       </form>
     </div>

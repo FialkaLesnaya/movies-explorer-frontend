@@ -35,6 +35,8 @@
   background-color: #000;
   border-radius: 3px;
   flex-shrink: 0;
+  transition: opacity ease 0.4s;
+  cursor: pointer;
 
   color: #fff;
   font-family: 'Inter';
@@ -42,6 +44,10 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.login__submit:hover {
+  opacity: 0.6;
 }
 
 .login__info {
@@ -64,6 +70,11 @@
   font-weight: 400;
   line-height: normal;
   text-decoration: none;
+  transition: opacity ease 0.4s;
+}
+
+.login__link:hover {
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 1023px) {
@@ -95,7 +106,7 @@
     font-size: 12px;
   }
 
-  .login__link { 
+  .login__link {
     margin-left: 7px;
     font-size: 12px;
   }
