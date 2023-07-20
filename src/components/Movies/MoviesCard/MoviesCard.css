@@ -44,18 +44,24 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  background: #fff no-repeat center/cover;
+  transition: opacity ease .4s;
+}
+
+.movies-card__action:hover {
+  opacity: 0.6;
 }
 
 .movies-card__action--not-fill {
-  background: url('../../../images/saved-not-fill.svg') no-repeat center/cover;
+  background-image: url('../../../images/saved-not-fill.svg');
 }
 
 .movies-card__action--fill {
-  background: url('../../../images/saved-fill.svg') no-repeat center/cover;
+  background-image: url('../../../images/saved-fill.svg');
 }
 
 .movies-card__action--close {
-  background: url('../../../images/save-remove.svg') no-repeat center/cover;
+  background-image: url('../../../images/save-remove.svg');
 }
 
 @media screen and (max-width: 1023px) {
