@@ -2,7 +2,7 @@
   background: #fdfdfd;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
   flex-shrink: 0;
-  flex-basis: calc(33% - 24px);
+  flex-basis: 364px;
 }
 
 .movies-card__header {
@@ -66,7 +66,7 @@
 
 @media screen and (max-width: 1023px) {
   .movies-card {
-    flex-basis: calc(50% - 24px);
+    flex-basis: 339px;
   }
 
   .movies-card__photo {
@@ -76,7 +76,7 @@
 
 @media screen and (max-width: 767px) {
   .movies-card {
-    flex-basis: 100%;
+    flex-basis: 300px;
   }
 
   .movies-card__photo {
