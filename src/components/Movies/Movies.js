@@ -8,9 +8,10 @@ function Movies() {
   return (
     <div>
       <Header isMainPage={false} />
-      Movies
-      <FilterCheckbox />
-      <MoviesCardList />
+      <div className='movies__container'>
+        <FilterCheckbox />
+        <MoviesCardList />
+      </div>
       <Footer />
     </div>
   );
