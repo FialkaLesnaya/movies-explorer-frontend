@@ -1,7 +1,7 @@
 import './MoviesCard.css';
 
 function MoviesCard({
-  item: { title, duration, isLiked },
+  item: { title, duration, isLiked, image },
   isFavoriteBlock = false,
 }) {
   const iconStyle = isLiked
@@ -26,7 +26,7 @@ function MoviesCard({
         ></button>
       </div>
 
-      <div className='movies-card__photo'></div>
+      <img src={image} alt={title} className='movies-card__photo'/>
     </div>
   );
 }
