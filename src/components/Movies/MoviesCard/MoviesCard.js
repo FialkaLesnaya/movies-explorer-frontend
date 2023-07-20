@@ -1,7 +1,13 @@
 import './MoviesCard.css';
 
-function MoviesCard({ item: { title, duration, isLiked } }) {
-  const iconStyle = isLiked ? 'movies-card__action--fill' : 'movies-card__action--not-fill';
+function MoviesCard({
+  item: { title, duration, isLiked },
+  isFavoriteBlock = false,
+}) {
+  const iconStyle = isLiked
+    ? 'movies-card__action--fill'
+    : 'movies-card__action--not-fill';
+
   return (
     <div className='movies-card'>
       <div className='movies-card__header'>
@@ -11,7 +17,13 @@ function MoviesCard({ item: { title, duration, isLiked } }) {
           <p className='movies-card__time'>{duration}</p>
         </div>
 
-        <button className={'movies-card__action ' + iconStyle} type='button'></button>
+        <button
+          className={
+            'movies-card__action ' +
+            (isFavoriteBlock ? 'movies-card__action--close' : iconStyle)
+          }
+          type='button'
+        ></button>
       </div>
 
       <div className='movies-card__photo'></div>
