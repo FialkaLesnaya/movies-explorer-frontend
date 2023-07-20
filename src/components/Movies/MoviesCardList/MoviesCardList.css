@@ -2,5 +2,21 @@
     margin-top: 118px;
     display: flex;
     flex-wrap: wrap;
-    gap: 24px 30px;
+    gap: 30px 24px;
+}
+
+@media screen and (max-width: 1023px) {
+    .movies-card-list {
+        margin-top: 132px;
+        gap: 36px 30px;
+    }
+    
+}
+
+@media screen and (max-width: 767px) {
+    .movies-card-list {
+        margin-top: 90px;
+        gap: 16px;
+    }
+    
 }
