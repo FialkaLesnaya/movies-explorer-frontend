@@ -1,7 +1,11 @@
+import AccountLinkButton from '../AccountLinkButton/AccountLinkButton';
 import Logo from '../Logo/Logo';
+import MobileNavigation from '../MobileNavigation/MobileNavigation';
 import './Header.css';
 
 function Header({ isMainPage }) {
+  const isMenuOpen = false;
+
   return (
     <div className='header'>
       <Logo />
@@ -39,13 +43,11 @@ function Header({ isMainPage }) {
         </div>
       )}
 
-      {!isMainPage && (
-        <a href='/profile' className='header__link-base header__account-link'>
-          <span className='header__account-link-text'>Аккаунт</span>
+      {!isMainPage && <div className='header__menu-button'></div>}
 
-          <div className='header__account-link-icon'></div>
-        </a>
-      )}
+      {!isMainPage && (<div className='header__account-link'><AccountLinkButton /></div>)}
+
+      {isMenuOpen && <MobileNavigation />}
     </div>
   );
 }
