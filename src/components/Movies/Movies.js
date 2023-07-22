@@ -3,6 +3,7 @@ import './Movies.css';
 import Header from 'components/common/Header/Header';
 import FilterCheckbox from 'components/common/FilterCheckbox/FilterCheckbox';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
+import LoadingButton from './LoadingButton/LoadingButton';
 
 function Movies() {
   const cardList = [
@@ -98,6 +99,7 @@ function Movies() {
       <div className='movies__container'>
         <FilterCheckbox />
         <MoviesCardList cardList={cardList} />
+        <LoadingButton />
       </div>
       <Footer />
     </div>
