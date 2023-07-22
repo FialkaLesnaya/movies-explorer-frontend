@@ -5,7 +5,6 @@
 .footer__title {
   color: #a0a0a0;
   text-align: center;
-  font-family: 'Inter';
   font-size: 13px;
   font-weight: 400;
 
@@ -22,7 +21,6 @@
 
 .footer__copyright {
   margin: 0;
-  font-family: 'Inter';
   font-size: 13px;
 }
 
@@ -42,7 +40,6 @@
 }
 
 .footer__link {
-  font-family: 'Inter';
   font-size: 13px;
   font-style: normal;
   font-weight: 400;

@@ -14,7 +14,6 @@
 
 .about-project__info-title {
   color: #000;
-  font-family: 'Inter';
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -25,7 +24,6 @@
 
 .about-project__info-description {
   color: #000;
-  font-family: 'Inter';
   font-size: 14px;
   font-style: normal;
   line-height: 20px;
@@ -58,7 +56,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Inter';
   font-size: 14px;
   font-style: normal;
   line-height: normal;
@@ -68,7 +65,6 @@
 .about-project__duration-description {
   margin: 14px 0 0 0;
   color: #a0a0a0;
-  font-family: 'Inter';
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

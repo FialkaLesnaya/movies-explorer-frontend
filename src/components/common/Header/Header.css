@@ -12,7 +12,6 @@
 
 .header__link-base {
   color: #000;
-  font-family: 'Inter';
   font-style: normal;
   text-decoration: none;
   transition: opacity ease 0.4s;

@@ -12,7 +12,6 @@
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-family: 'Inter';
   font-size: 11px;
   font-style: normal;
   font-weight: 500;
@@ -36,7 +35,6 @@
 
 .search-form__input {
   text-align: center;
-  font-family: 'Inter';
   font-size: 28px;
   font-style: normal;
   font-weight: 500;
