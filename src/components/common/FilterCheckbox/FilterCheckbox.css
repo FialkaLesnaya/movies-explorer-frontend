@@ -1,6 +1,6 @@
 .filter-checkbox {
   position: relative;
-  display: block;
+  display: inline-block;
 }
 
 .filter-checkbox__text {

@@ -1,9 +1,9 @@
 import Footer from 'components/common/Footer/Footer';
 import './Movies.css';
 import Header from 'components/common/Header/Header';
-import FilterCheckbox from 'components/common/FilterCheckbox/FilterCheckbox';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import LoadingButton from './LoadingButton/LoadingButton';
+import SearchForm from './SearchForm/SearchForm';
 
 function Movies() {
   const cardList = [
@@ -97,7 +97,7 @@ function Movies() {
     <div>
       <Header isMainPage={false} />
       <div className='movies__container'>
-        <FilterCheckbox />
+        <SearchForm />
         <MoviesCardList cardList={cardList} />
         <LoadingButton />
       </div>

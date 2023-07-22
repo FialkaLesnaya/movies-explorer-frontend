@@ -1,9 +1,9 @@
 import Footer from 'components/common/Footer/Footer';
 import './SavedMovies.css';
 import Header from 'components/common/Header/Header';
-import FilterCheckbox from 'components/common/FilterCheckbox/FilterCheckbox';
 import MoviesCardList from 'components/Movies/MoviesCardList/MoviesCardList';
 import LoadingButton from 'components/Movies/LoadingButton/LoadingButton';
+import SearchForm from 'components/Movies/SearchForm/SearchForm';
 
 function SavedMovies() {
   const cardList = [
@@ -34,7 +34,7 @@ function SavedMovies() {
     <div>
       <Header isMainPage={false} />
       <div className='saved-movies__container'>
-        <FilterCheckbox />
+        <SearchForm />
         <MoviesCardList cardList={cardList} isFavoriteBlock />
         <LoadingButton />
       </div>
