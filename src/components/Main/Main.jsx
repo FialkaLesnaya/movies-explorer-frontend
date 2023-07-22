@@ -8,14 +8,14 @@ import Header from 'components/common/Header/Header';
 
 function Main() {
   return (
-    <div>
-      <Header isMainPage/>
+    <>
+      <Header isMainPage />
       <Promo />
       <AboutProject />
       <Techs />
       <AboutMe />
       <Footer />
-    </div>
+    </>
   );
 }
 
