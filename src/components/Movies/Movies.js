@@ -1,9 +1,9 @@
 import Footer from 'components/common/Footer/Footer';
 import './Movies.css';
 import Header from 'components/common/Header/Header';
-import MoviesCardList from './MoviesCardList/MoviesCardList';
-import LoadingButton from './LoadingButton/LoadingButton';
-import SearchForm from './SearchForm/SearchForm';
+import LoadingButton from '../common/LoadingButton/LoadingButton';
+import SearchForm from 'components/common/SearchForm/SearchForm';
+import MoviesCardList from 'components/common/MoviesCardList/MoviesCardList';
 
 function Movies() {
   const cardList = [
