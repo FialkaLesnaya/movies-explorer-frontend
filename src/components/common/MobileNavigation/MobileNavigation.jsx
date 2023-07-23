@@ -1,7 +1,7 @@
 import AccountLinkButton from '../AccountLinkButton/AccountLinkButton';
 import './MobileNavigation.css';
 
-function MobileNavigation({ onCloseMenu }) {
+function MobileNavigation({ onCloseMenu, isMenuOpen }) {
   const links = [
     {
       title: 'Главная',
@@ -20,9 +20,17 @@ function MobileNavigation({ onCloseMenu }) {
     },
   ];
   return (
-    <div className='mobile-navigation'>
+    <div
+      className={
+        'mobile-navigation' + (isMenuOpen ? ' mobile-navigation--active' : '')
+      }
+    >
       <div className='mobile-navigation__container'>
-        <button className='mobile-navigation__close' type='button' onClick={onCloseMenu}></button>
+        <button
+          className='mobile-navigation__close'
+          type='button'
+          onClick={onCloseMenu}
+        ></button>
 
         <ul className='mobile-navigation__list'>
           {links.map((item) => (

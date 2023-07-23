@@ -6,9 +6,19 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity ease .4s;
+}
+
+.mobile-navigation--active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .mobile-navigation__container {
+  top: 0;
+  right: -100%;
   background-color: #fff;
   height: 100%;
   width: 520px;
@@ -17,7 +27,12 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: fixed;
+  transition: right ease .4s;
+}
+
+.mobile-navigation--active .mobile-navigation__container {
+  right: 0;
 }
 
 .mobile-navigation__close {

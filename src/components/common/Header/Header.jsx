@@ -56,7 +56,7 @@ function Header({ isMainPage }) {
 
       {!isMainPage && (<div className='header__account-link'><AccountLinkButton /></div>)}
 
-      {isMenuOpen && <MobileNavigation onCloseMenu={closeMenuClick} />}
+      <MobileNavigation isMenuOpen={isMenuOpen} onCloseMenu={closeMenuClick} />
     </div>
   );
 }
