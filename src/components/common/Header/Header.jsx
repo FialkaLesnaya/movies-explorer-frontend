@@ -1,10 +1,19 @@
+import { useCallback, useState } from 'react';
 import AccountLinkButton from '../AccountLinkButton/AccountLinkButton';
 import Logo from '../Logo/Logo';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
 import './Header.css';
 
 function Header({ isMainPage }) {
-  const isMenuOpen = false;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const openMenuClick = useCallback(() => {
+    setIsMenuOpen(true);
+  }, []);
+
+  const closeMenuClick = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
 
   return (
     <div className='header'>
@@ -43,11 +52,11 @@ function Header({ isMainPage }) {
         </div>
       )}
 
-      {!isMainPage && <div className='header__menu-button'></div>}
+      {!isMainPage && <div className='header__menu-button' onClick={openMenuClick}></div>}
 
       {!isMainPage && (<div className='header__account-link'><AccountLinkButton /></div>)}
 
-      {isMenuOpen && <MobileNavigation />}
+      {isMenuOpen && <MobileNavigation onCloseMenu={closeMenuClick} />}
     </div>
   );
 }
