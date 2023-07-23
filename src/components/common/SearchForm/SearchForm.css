@@ -1,5 +1,5 @@
 .search-form {
-  margin: 70px 0 49px 0;
+  padding: 70px 0 49px 0;
   text-align: center;
 }
 
@@ -63,13 +63,13 @@
 
 @media screen and (max-width: 1023px) {
   .search-form {
-    margin: 86px 0 62px 0;
+    padding: 86px 0 62px 0;
   }
 }
 
 @media screen and (max-width: 767px) {
   .search-form {
-    margin: 98px 0 51px 0;
+    padding: 98px 0 51px 0;
   }
 
   .search-form__container {
