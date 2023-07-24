@@ -3,7 +3,6 @@
   padding: 70px 0;
   margin: auto;
   max-width: 396px;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -18,9 +17,6 @@
 
 .login__form {
   margin-top: 40px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .login__input + .login__input {
@@ -30,7 +26,7 @@
 .login__submit {
   width: 100%;
   height: 45px;
-  margin-top: auto;
+  margin-top: 221px;
   background-color: #000;
   border-radius: 3px;
   flex-shrink: 0;
@@ -86,6 +82,7 @@
 
   .login__title {
     margin: 50px 0 0 0;
+    text-align: center;
   }
 
   .login__form {
@@ -94,6 +91,7 @@
 
   .login__submit {
     font-size: 14px;
+    margin-top: 309px;
   }
 
   .login__info {
@@ -104,5 +102,9 @@
   .login__link {
     margin-left: 7px;
     font-size: 12px;
+  }
+
+  .login__logo {
+    margin: auto;
   }
 }

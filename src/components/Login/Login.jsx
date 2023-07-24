@@ -5,7 +5,9 @@ import Logo from 'components/common/Logo/Logo';
 function Login() {
   return (
     <section className='login'>
-      <Logo />
+      <div className='login__logo'>
+        <Logo />
+      </div>
 
       <h2 className='login__title'>Рады видеть!</h2>
 

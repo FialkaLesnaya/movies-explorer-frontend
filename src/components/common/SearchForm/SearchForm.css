@@ -31,6 +31,7 @@
   height: 34px;
   border-radius: 50px;
   flex-shrink: 0;
+  margin-left: 6px;
 }
 
 .search-form__input {
@@ -69,7 +70,7 @@
 
 @media screen and (max-width: 767px) {
   .search-form {
-    padding: 98px 0 51px 0;
+    padding: 92px 0 51px 0;
   }
 
   .search-form__container {

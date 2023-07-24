@@ -5,7 +5,9 @@ import Logo from 'components/common/Logo/Logo';
 function Register() {
   return (
     <section className='register'>
-      <Logo />
+      <div className='register__logo'>
+        <Logo />
+      </div>
 
       <h2 className='register__title'>Добро пожаловать!</h2>
 
