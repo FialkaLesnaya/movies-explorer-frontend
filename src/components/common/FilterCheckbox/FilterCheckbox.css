@@ -28,7 +28,11 @@
   border-radius: 20px;
   width: 34px;
   height: 14px;
-  transition: background-color ease 0.4s;
+  transition: background-color, opacity ease 0.4s;
+}
+
+.filter-checkbox__switcher:hover {
+  opacity: 0.6;
 }
 
 .filter-checkbox__switcher:before {
