@@ -20,6 +20,9 @@ function Profile() {
               className='profile__input'
               id='profile-name'
               name='profile-name'
+              placeholder='Введите имя'
+              minLength={2}
+              maxLength={30}
               value='Фиалка'
             />
           </div>
@@ -34,6 +37,7 @@ function Profile() {
               className='profile__input'
               id='profile-email'
               name='profile-email'
+              placeholder='Введите email'
               value='pochta@yandex.ru'
             />
           </div>

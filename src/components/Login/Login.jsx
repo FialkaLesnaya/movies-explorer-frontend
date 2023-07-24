@@ -11,11 +11,23 @@ function Login() {
 
       <form className='login__form'>
         <div className='login__input'>
-          <Input text='Email' type='email' uniqId='email' />
+          <Input
+            text='Email'
+            type='email'
+            placeholder='Введите email'
+            uniqId='email'
+            required
+          />
         </div>
 
         <div className='login__input'>
-          <Input text='Пароль' type='password' uniqId='password' />
+          <Input
+            text='Пароль'
+            type='password'
+            placeholder='Введите пароль'
+            uniqId='password'
+            required
+          />
         </div>
 
         <button className='login__submit' type='submit'>
