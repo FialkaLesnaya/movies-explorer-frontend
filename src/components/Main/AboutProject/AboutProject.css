@@ -1,5 +1,5 @@
 .about-project {
-  padding: 70px 110px;
+  padding: 110px 70px;
 }
 
 .about-project__info {
@@ -38,10 +38,12 @@
 .about-project__duration-item {
   text-align: center;
   width: 20%;
+  min-width: 100px;
 }
 
 .about-project__duration-item--light {
   width: 80%;
+  min-width: 184px;
 }
 
 .about-project__duration-item--light .about-project__duration-title {
@@ -117,7 +119,7 @@
   .about-project__info-description {
     font-size: 11px;
     line-height: 16px;
-    margin: 16px 0 0 0;
+    margin: 18px 0 0 0;
   }
 
   .about-project__duration {

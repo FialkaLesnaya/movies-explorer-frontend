@@ -46,8 +46,8 @@
 }
 
 .portfolio__item-icon {
-  background: url('../../../images/link-icon.svg') no-repeat center/cover;
-  width: 16px;
+  background: url('../../../images/link-icon.svg') no-repeat center/contain;
+  width: 29px;
   height: 16px;
 }
 

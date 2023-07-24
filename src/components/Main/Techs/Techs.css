@@ -86,12 +86,16 @@
 
   .techs__content-title {
     font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
   }
 
   .techs__content-description {
     margin-top: 24px;
     font-size: 11px;
-    line-height: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.44px;
   }
 
   .techs__content-list {
@@ -102,5 +106,10 @@
 
   .techs__content-item {
     flex-basis: calc((100% - 10px) / 2);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.48px;
   }
 }
