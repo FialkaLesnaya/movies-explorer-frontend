@@ -16,11 +16,11 @@ function Header({ isMainPage }) {
   }, []);
 
   return (
-    <div className='header'>
+    <header className='header'>
       <Logo />
 
       {!isMainPage && (
-        <div className='header__nav'>
+        <nav className='header__nav'>
           <a
             href='/movies'
             className='header__link-base header__nav-link header__nav-link--active'
@@ -34,11 +34,11 @@ function Header({ isMainPage }) {
           >
             Сохраненные фильмы
           </a>
-        </div>
+        </nav>
       )}
 
       {isMainPage && (
-        <div className='header__auth-nav'>
+        <nav className='header__auth-nav'>
           <a href='/signup' className='header__link-base header__auth-link'>
             Регистрация
           </a>
@@ -49,7 +49,7 @@ function Header({ isMainPage }) {
           >
             Войти
           </a>
-        </div>
+        </nav>
       )}
 
       {!isMainPage && <div className='header__menu-button' onClick={openMenuClick}></div>}
@@ -57,7 +57,7 @@ function Header({ isMainPage }) {
       {!isMainPage && (<div className='header__account-link'><AccountLinkButton /></div>)}
 
       <MobileNavigation isMenuOpen={isMenuOpen} onCloseMenu={closeMenuClick} />
-    </div>
+    </header>
   );
 }
 

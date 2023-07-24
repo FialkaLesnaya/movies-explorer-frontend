@@ -31,15 +31,17 @@ function SavedMovies() {
   ];
 
   return (
-    <div>
+    <>
       <Header isMainPage={false} />
-      <div className='saved-movies__container'>
-        <SearchForm />
-        <MoviesCardList cardList={cardList} isFavoriteBlock />
-        <LoadingButton />
-      </div>
+      <main className='saved-movies'>
+        <section className='saved-movies__container'>
+          <SearchForm />
+          <MoviesCardList cardList={cardList} isFavoriteBlock />
+          <LoadingButton />
+        </section>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }
 

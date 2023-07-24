@@ -17,19 +17,28 @@ function Portfolio() {
   ];
 
   return (
-    <div className='portfolio'>
+    <section className='portfolio'>
       <h3 className='portfolio__title'>Портфолио</h3>
 
-      <div className='portfolio__list'>
+      <ul className='portfolio__list'>
         {links.map((item) => (
-          <a key={item.title} href={item.link} target='_blank' rel="noreferrer" className='portfolio__item'>
-            <h4 className='portfolio__item-title'>{item.title}</h4>
+          <li
+              className='portfolio__item-container'>
+            <a
+              key={item.title}
+              href={item.link}
+              target='_blank'
+              rel='noreferrer'
+              className='portfolio__item'
+            >
+              <h4 className='portfolio__item-title'>{item.title}</h4>
 
-            <div className='portfolio__item-icon'></div>
-          </a>
+              <div className='portfolio__item-icon'></div>
+            </a>
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 }
 

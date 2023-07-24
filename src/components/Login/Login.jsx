@@ -4,7 +4,7 @@ import Logo from 'components/common/Logo/Logo';
 
 function Login() {
   return (
-    <div className='login'>
+    <section className='login'>
       <Logo />
 
       <h2 className='login__title'>Рады видеть!</h2>
@@ -41,7 +41,7 @@ function Login() {
           </a>
         </p>
       </form>
-    </div>
+    </section>
   );
 }
 

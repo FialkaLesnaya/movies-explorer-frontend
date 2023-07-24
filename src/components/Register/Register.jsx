@@ -4,7 +4,7 @@ import Logo from 'components/common/Logo/Logo';
 
 function Register() {
   return (
-    <div className='register'>
+    <section className='register'>
       <Logo />
 
       <h2 className='register__title'>Добро пожаловать!</h2>
@@ -53,7 +53,7 @@ function Register() {
           </a>
         </p>
       </form>
-    </div>
+    </section>
   );
 }
 

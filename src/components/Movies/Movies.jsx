@@ -94,15 +94,17 @@ function Movies() {
   ];
 
   return (
-    <div>
+    <>
       <Header isMainPage={false} />
-      <div className='movies__container'>
-        <SearchForm />
-        <MoviesCardList cardList={cardList} />
-        <LoadingButton />
-      </div>
+      <main className='movies'>
+        <section className='movies__container'>
+          <SearchForm />
+          <MoviesCardList cardList={cardList} />
+          <LoadingButton />
+        </section>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }
 

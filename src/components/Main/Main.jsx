@@ -10,10 +10,14 @@ function Main() {
   return (
     <>
       <Header isMainPage />
-      <Promo />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
+
+      <main>
+        <Promo />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+      </main>
+      
       <Footer />
     </>
   );

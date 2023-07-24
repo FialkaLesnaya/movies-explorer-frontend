@@ -25,7 +25,7 @@ function MobileNavigation({ onCloseMenu, isMenuOpen }) {
         'mobile-navigation' + (isMenuOpen ? ' mobile-navigation--active' : '')
       }
     >
-      <div className='mobile-navigation__container'>
+      <nav className='mobile-navigation__container'>
         <button
           className='mobile-navigation__close'
           type='button'
@@ -51,7 +51,7 @@ function MobileNavigation({ onCloseMenu, isMenuOpen }) {
         <div className='mobile-navigation__account-link'>
           <AccountLinkButton />
         </div>
-      </div>
+      </nav>
     </div>
   );
 }

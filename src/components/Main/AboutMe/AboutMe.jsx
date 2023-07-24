@@ -4,7 +4,7 @@ import './AboutMe.css';
 
 function AboutMe() {
   return (
-    <div className='about-me' id="about-me">
+    <section className='about-me' id="about-me">
       <MainTitle title='Студентка' />
 
       <div className='about-me__content'>
@@ -28,7 +28,7 @@ function AboutMe() {
       </div>
 
       <Portfolio />
-    </div>
+    </section>
   );
 }
 
