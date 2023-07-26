@@ -34,7 +34,7 @@ function MobileNavigation({ onCloseMenu, isMenuOpen }) {
 
         <ul className='mobile-navigation__list'>
           {links.map((item) => (
-            <li className='mobile-navigation__item'>
+            <li key={item.title} className='mobile-navigation__item'>
               <a
                 href={item.link}
                 className={

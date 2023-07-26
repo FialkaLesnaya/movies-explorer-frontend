@@ -4,102 +4,53 @@ import Header from 'components/common/Header/Header';
 import LoadingButton from '../common/LoadingButton/LoadingButton';
 import SearchForm from 'components/common/SearchForm/SearchForm';
 import MoviesCardList from 'components/common/MoviesCardList/MoviesCardList';
+import { useCallback, useEffect, useState } from 'react';
+import { MoviesApi } from 'utils/MoviesApi';
 
 function Movies() {
-  const cardList = [
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/583809524/photo/alberta-wilderness-near-banff.jpg?s=2048x2048&w=is&k=20&c=W2WIEh64AZfOEd7TuMzWQUVIBWXiHpytdWHDNEKxhPo=',
-      isLiked: false,
+  const [initialMovies, setInitialMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    MoviesApi.loadMovies()
+      .then((data) => {
+        setInitialMovies(data);
+      })
+      .catch((err) => {
+        console.log(`Ошибка загрузки изначальных данных ${err}`);
+      });
+  }, []);
+
+  const handleSearch = useCallback(
+    (isFiltered, searchValue = '') => {
+      if (isFiltered) {
+        const filteredMovies = initialMovies.filter(
+          (movie) =>
+            movie.duration <= 40 &&
+            (movie.nameRU.includes(searchValue) ||
+              movie.nameEN.includes(searchValue))
+        );
+        setMovies(filteredMovies);
+        return;
+      }
+
+      const filteredMovies = initialMovies.filter(
+        (movie) =>
+          movie.nameRU.includes(searchValue) ||
+          movie.nameEN.includes(searchValue)
+      );
+      setMovies(filteredMovies);
     },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: false,
-    },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: true,
-    },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: false,
-    },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: true,
-    },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: false,
-    },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: false,
-    },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: false,
-    },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: false,
-    },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: true,
-    },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: false,
-    },
-    {
-      title: '33 слова о дизайне',
-      duration: '1ч 47м',
-      image:
-        'https://media.istockphoto.com/id/1092924028/photo/colorful-painted-hands-in-front-of-a-spring-scene.jpg?s=2048x2048&w=is&k=20&c=2o2PSOt_Y88mFMuWDgU0qaH6knB7IFZeYZdPbBqCfN4=',
-      isLiked: false,
-    },
-  ];
+    [initialMovies]
+  );
 
   return (
     <>
       <Header isMainPage={false} />
       <main className='movies'>
         <section className='movies__container'>
-          <SearchForm />
-          <MoviesCardList cardList={cardList} />
+          <SearchForm handleSearch={handleSearch} />
+          <MoviesCardList cardList={movies} />
           <LoadingButton />
         </section>
       </main>

@@ -17,7 +17,7 @@ class MoviesApiService {
   }
 
   loadMovies() {
-    return this._request(`${this.baseUrl}/cards`, { headers: this.headers });
+    return this._request(`${this.baseUrl}`, { headers: this.headers });
   }
 }
 

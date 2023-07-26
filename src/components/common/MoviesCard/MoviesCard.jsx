@@ -1,20 +1,22 @@
 import './MoviesCard.css';
 
-function MoviesCard({
-  item: { title, duration, isLiked, image },
-  isFavoriteBlock = false,
-}) {
-  const iconStyle = isLiked
+function MoviesCard({ movie, isFavoriteBlock = false }) {
+  const iconStyle = false
     ? 'movies-card__action--fill'
     : 'movies-card__action--not-fill';
+
+  const hours = Math.floor(movie.duration / 60);
+  const minutes = movie.duration % 60;
+
+  const formattedTime = hours + 'ч ' + minutes + 'м';
 
   return (
     <div className='movies-card'>
       <div className='movies-card__header'>
         <div className='movies-card__info'>
-          <h3 className='movies-card__title'>{title}</h3>
+          <h3 className='movies-card__title'>{movie.nameRU}</h3>
 
-          <p className='movies-card__time'>{duration}</p>
+          <p className='movies-card__time'>{formattedTime}</p>
         </div>
 
         <button
@@ -26,7 +28,11 @@ function MoviesCard({
         ></button>
       </div>
 
-      <img src={image} alt={title} className='movies-card__photo'/>
+      <img
+        src={'https://api.nomoreparties.co/' + movie.image.url}
+        alt={movie.nameRU}
+        className='movies-card__photo'
+      />
     </div>
   );
 }

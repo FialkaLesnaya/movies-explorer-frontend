@@ -7,7 +7,7 @@ function MoviesCardList({ cardList, isFavoriteBlock = false }) {
       {cardList.length === 0 && (<p className='movies-card-list__empty-text'>Результатов не найдено</p>)}
 
       {cardList.map((item) => (
-        <MoviesCard item={item} isFavoriteBlock={isFavoriteBlock} />
+        <MoviesCard key={item.id} movie={item} isFavoriteBlock={isFavoriteBlock} />
       ))}
     </div>
   );
