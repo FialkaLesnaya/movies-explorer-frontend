@@ -1,0 +1,15 @@
+.movies__container {
+  margin: 0 70px;
+}
+
+@media screen and (max-width: 1023px) {
+  .movies__container {
+    margin: 0 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .movies__container {
+    margin: 0 10px;
+  }
+}
