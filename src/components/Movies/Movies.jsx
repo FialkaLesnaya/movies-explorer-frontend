@@ -6,11 +6,12 @@ import SearchForm from 'components/common/SearchForm/SearchForm';
 import MoviesCardList from 'components/common/MoviesCardList/MoviesCardList';
 import useLoadMovies from 'hooks/useLoadMovies';
 import useSearch from 'hooks/useSearch';
+import MoviesCardListStates from 'components/common/MoviesCardListStates/MoviesCardListStates';
 
 function Movies() {
   const { initialMovies, isError, isLoading } = useLoadMovies();
 
-  const { movies, handleSearch } = useSearch({ initialMovies });
+  const { movies, handleSearch, hasSearchValue } = useSearch({ initialMovies });
 
   return (
     <>
@@ -18,12 +19,17 @@ function Movies() {
       <main className='movies'>
         <section className='movies__container'>
           <SearchForm handleSearch={handleSearch} />
-          <MoviesCardList
-            cardList={movies}
+          
+          <MoviesCardListStates
             isError={isError}
             isLoading={isLoading}
+            nothingFound={movies.length === 0 && hasSearchValue}
+            tryToSearch={movies.length === 0 && !hasSearchValue}
           />
-          <LoadingButton />
+
+          {movies.length > 0 && <MoviesCardList cardList={movies} />}
+
+          {movies.length > 0 && <LoadingButton />}
         </section>
       </main>
       <Footer />

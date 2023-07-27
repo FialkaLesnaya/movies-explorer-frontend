@@ -15,6 +15,7 @@ const useLoadMovies = () => {
       })
       .catch(() => {
         setIsError(true);
+        setIsLoading(false);
       });
   }, []);
 

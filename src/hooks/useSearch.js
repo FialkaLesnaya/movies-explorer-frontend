@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
 const filterMovies = (movies, isFiltered, searchValue) => {
   const lowerSearchValue = searchValue.toLowerCase();
@@ -21,6 +21,7 @@ const filterMovies = (movies, isFiltered, searchValue) => {
 
 const useSearch = ({ initialMovies }) => {
   const [movies, setMovies] = useState([]);
+  const [hasSearchValue, setHasSearchValue] = useState(false);
 
   const handleSearch = useCallback(
     (isFiltered = false, searchValue = '') => {
@@ -30,11 +31,12 @@ const useSearch = ({ initialMovies }) => {
         searchValue
       );
       setMovies(filteredMovies);
+      setHasSearchValue(searchValue.length > 0);
     },
     [initialMovies]
   );
 
-  return { movies, handleSearch };
+  return { movies, handleSearch, hasSearchValue };
 };
 
 export default useSearch;
