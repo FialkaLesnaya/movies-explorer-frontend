@@ -32,7 +32,7 @@ function SearchForm({ handleSearch }) {
     setIsChecked(!isChecked);
 
     if (searchValue.length > 0) {
-      handleSearch(isChecked, searchValue);
+      handleSearch(!isChecked, searchValue);
     }
   }, [isChecked, searchValue, handleSearch]);
 
