@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 
 function SearchForm({ handleSearch }) {
   const [searchValue, setSearchValue] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
 
   const onChange = useCallback((event) => {
     const { value } = event.target;
@@ -13,9 +14,9 @@ function SearchForm({ handleSearch }) {
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      handleSearch(false, searchValue);
+      handleSearch(isChecked, searchValue);
     },
-    [handleSearch, searchValue]
+    [handleSearch, isChecked, searchValue]
   );
 
   const onKeyDown = useCallback(
@@ -26,6 +27,14 @@ function SearchForm({ handleSearch }) {
     },
     [onSubmit]
   );
+
+  const onCheckboxChange = useCallback(() => {
+    setIsChecked(!isChecked);
+
+    if (searchValue.length > 0) {
+      handleSearch(isChecked, searchValue);
+    }
+  }, [isChecked, searchValue, handleSearch]);
 
   return (
     <form className='search-form' onSubmit={onSubmit}>
@@ -45,7 +54,7 @@ function SearchForm({ handleSearch }) {
         </button>
       </div>
 
-      <FilterCheckbox handleSearch={handleSearch} />
+      <FilterCheckbox isChecked={isChecked} handleChange={onCheckboxChange} />
     </form>
   );
 }

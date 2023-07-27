@@ -1,16 +1,8 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import './FilterCheckbox.css';
 
-function FilterCheckbox({handleSearch}) {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const onChange = useCallback(
-    () => {
-      setIsChecked(!isChecked);
-      handleSearch(!isChecked);
-    },
-    [isChecked, handleSearch]
-  );
+function FilterCheckbox({ isChecked, handleChange }) {
+  const onChange = useCallback(() => handleChange(), [handleChange]);
 
   return (
     <label className='filter-checkbox'>
