@@ -23,12 +23,13 @@ function Movies() {
 
   const handleSearch = useCallback(
     (isFiltered, searchValue = '') => {
+      const lowerSearchValue = searchValue.toLowerCase();
       if (isFiltered) {
         const filteredMovies = initialMovies.filter(
           (movie) =>
             movie.duration <= 40 &&
-            (movie.nameRU.includes(searchValue) ||
-              movie.nameEN.includes(searchValue))
+            (movie.nameRU.toLowerCase().includes(lowerSearchValue) ||
+              movie.nameEN.toLowerCase().includes(lowerSearchValue))
         );
         setMovies(filteredMovies);
         return;
@@ -36,8 +37,8 @@ function Movies() {
 
       const filteredMovies = initialMovies.filter(
         (movie) =>
-          movie.nameRU.includes(searchValue) ||
-          movie.nameEN.includes(searchValue)
+          movie.nameRU.toLowerCase().includes(lowerSearchValue) ||
+          movie.nameEN.toLowerCase().includes(lowerSearchValue)
       );
       setMovies(filteredMovies);
     },
