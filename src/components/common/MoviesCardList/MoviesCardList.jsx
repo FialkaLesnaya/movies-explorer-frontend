@@ -4,10 +4,12 @@ import './MoviesCardList.css';
 function MoviesCardList({
   cardList,
   isFavoriteBlock = false,
+  limit = 5,
 }) {
+
   return (
     <div className='movies-card-list'>
-      {cardList.map((item) => (
+      {cardList.slice(0, limit).map((item) => (
         <MoviesCard
           key={item.id}
           movie={item}

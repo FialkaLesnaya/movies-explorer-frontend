@@ -7,11 +7,12 @@ import MoviesCardList from 'components/common/MoviesCardList/MoviesCardList';
 import useLoadMovies from 'hooks/useLoadMovies';
 import useSearch from 'hooks/useSearch';
 import MoviesCardListStates from 'components/common/MoviesCardListStates/MoviesCardListStates';
+import useCardLimit from 'hooks/useCardLimit';
 
 function Movies() {
   const { initialMovies, isError, isLoading } = useLoadMovies();
-
   const { movies, handleSearch, hasSearchValue } = useSearch({ initialMovies });
+  const { cardLimit, handleLoadMore } = useCardLimit();
 
   return (
     <>
@@ -19,7 +20,7 @@ function Movies() {
       <main className='movies'>
         <section className='movies__container'>
           <SearchForm handleSearch={handleSearch} />
-          
+
           <MoviesCardListStates
             isError={isError}
             isLoading={isLoading}
@@ -27,9 +28,13 @@ function Movies() {
             tryToSearch={movies.length === 0 && !hasSearchValue}
           />
 
-          {movies.length > 0 && <MoviesCardList cardList={movies} />}
+          {movies.length > 0 && (
+            <MoviesCardList cardList={movies} limit={cardLimit} />
+          )}
 
-          {movies.length > 0 && <LoadingButton />}
+          {movies.length > 0 && movies.length > cardLimit && (
+            <LoadingButton onChange={handleLoadMore} />
+          )}
         </section>
       </main>
       <Footer />
