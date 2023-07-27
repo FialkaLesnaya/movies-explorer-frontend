@@ -6,18 +6,24 @@ import SearchForm from 'components/common/SearchForm/SearchForm';
 import MoviesCardList from 'components/common/MoviesCardList/MoviesCardList';
 import { useCallback, useEffect, useState } from 'react';
 import { MoviesApi } from 'utils/MoviesApi';
+import Preloader from 'components/common/Preloader/Preloader';
 
 function Movies() {
   const [initialMovies, setInitialMovies] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     MoviesApi.loadMovies()
       .then((data) => {
         setInitialMovies(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(`Ошибка загрузки изначальных данных ${err}`);
+        setIsError(true);
       });
   }, []);
 
@@ -51,7 +57,7 @@ function Movies() {
       <main className='movies'>
         <section className='movies__container'>
           <SearchForm handleSearch={handleSearch} />
-          <MoviesCardList cardList={movies} />
+          <MoviesCardList cardList={movies} isError={isError} isLoading={isLoading}/>
           <LoadingButton />
         </section>
       </main>
