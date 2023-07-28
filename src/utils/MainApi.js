@@ -13,7 +13,7 @@ class MainApiService {
       return res.json();
     }
 
-    return Promise.reject(`Ошибка: ${res.status}`);
+    return res.json().then((err) => Promise.reject(err.message));
   }
 
   register(name, password, email) {
@@ -83,7 +83,7 @@ class MainApiService {
 }
 
 export const MainApi = new MainApiService({
-  baseUrl: 'rocks',
+  baseUrl: 'http://localhost:3001',
   headers: {
     authorization: localStorage.getItem('JWT_SECRET_KEY'),
     'Content-Type': 'application/json',
