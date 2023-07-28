@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MainApi } from 'utils/MainApi';
 
-const useLogin = (formData) => {
+const useLogin = (formData, handleLogin) => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
@@ -21,13 +21,14 @@ const useLogin = (formData) => {
       MainApi.login(formData.password, formData.email)
         .then((data) => {
           localStorage.setItem('JWT_SECRET_KEY', data.token);
+          handleLogin(true);
           navigate('/movies', { replace: true });
         })
         .catch((errorMessage) => {
           setErrorMessage(errorMessage);
         });
     },
-    [formData, isEmptyForm, navigate]
+    [formData, isEmptyForm, navigate, handleLogin]
   );
 
   return {

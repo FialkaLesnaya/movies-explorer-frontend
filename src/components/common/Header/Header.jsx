@@ -1,11 +1,13 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import AccountLinkButton from '../AccountLinkButton/AccountLinkButton';
 import Logo from '../Logo/Logo';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
 import './Header.css';
+import { CurrentUserContext } from 'contexts/CurrentUserContext';
 
-function Header({ isMainPage }) {
+function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const loggedIn = useContext(CurrentUserContext) != null;
 
   const openMenuClick = useCallback(() => {
     setIsMenuOpen(true);
@@ -19,7 +21,7 @@ function Header({ isMainPage }) {
     <header className='header'>
       <Logo />
 
-      {!isMainPage && (
+      {loggedIn && (
         <nav className='header__nav'>
           <a
             href='/movies'
@@ -37,7 +39,7 @@ function Header({ isMainPage }) {
         </nav>
       )}
 
-      {isMainPage && (
+      {!loggedIn && (
         <nav className='header__auth-nav'>
           <a href='/signup' className='header__link-base header__auth-link'>
             Регистрация
@@ -52,9 +54,9 @@ function Header({ isMainPage }) {
         </nav>
       )}
 
-      {!isMainPage && <div className='header__menu-button' onClick={openMenuClick}></div>}
+      {loggedIn && <div className='header__menu-button' onClick={openMenuClick}></div>}
 
-      {!isMainPage && (<div className='header__account-link'><AccountLinkButton /></div>)}
+      {loggedIn && (<div className='header__account-link'><AccountLinkButton /></div>)}
 
       <MobileNavigation isMenuOpen={isMenuOpen} onCloseMenu={closeMenuClick} />
     </header>

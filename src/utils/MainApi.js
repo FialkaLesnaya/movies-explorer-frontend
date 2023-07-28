@@ -50,12 +50,11 @@ class MainApiService {
     });
   }
   
-  checkMe(jwt) {
+  checkMe() {
     return this._request(`${this.baseUrl}/users/me`, {
       method: "GET",
       headers: {
         ...this.headers,
-        Authorization: `Bearer ${jwt}`,
       },
     });
   }

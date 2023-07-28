@@ -4,13 +4,16 @@ import Logo from 'components/common/Logo/Logo';
 import useLogin from 'hooks/useLogin';
 import { useState } from 'react';
 
-function Login() {
+function Login({ handleLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { onSubmit, isEmptyForm, errorMessage } = useLogin({
-    email,
-    password,
-  });
+  const { onSubmit, isEmptyForm, errorMessage } = useLogin(
+    {
+      email,
+      password,
+    },
+    handleLogin
+  );
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
