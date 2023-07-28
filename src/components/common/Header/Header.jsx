@@ -4,6 +4,7 @@ import Logo from '../Logo/Logo';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
 import './Header.css';
 import { CurrentUserContext } from 'contexts/CurrentUserContext';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,40 +24,46 @@ function Header() {
 
       {loggedIn && (
         <nav className='header__nav'>
-          <a
-            href='/movies'
+          <Link
             className='header__link-base header__nav-link header__nav-link--active'
+            to='/movies'
           >
             Фильмы
-          </a>
+          </Link>
 
-          <a
-            href='/saved-movies'
+          <Link
             className='header__link-base header__nav-link'
+            to='/saved-movies'
           >
             Сохраненные фильмы
-          </a>
+          </Link>
         </nav>
       )}
 
       {!loggedIn && (
         <nav className='header__auth-nav'>
-          <a href='/signup' className='header__link-base header__auth-link'>
+          <Link className='header__link-base header__auth-link' to='/signup'>
             Регистрация
-          </a>
-
-          <a
-            href='/signin'
+          </Link>
+          
+          <Link
             className='header__link-base header__auth-link header__auth-link--button'
+            to='/signin'
           >
             Войти
-          </a>
+          </Link>
         </nav>
       )}
 
-      {loggedIn && <div className='header__menu-button' onClick={openMenuClick}></div>}
+      {loggedIn && (
+        <div className='header__menu-button' onClick={openMenuClick}></div>
+      )}
 
-      {loggedIn && (<div className='header__account-link'><AccountLinkButton /></div>)}
+      {loggedIn && (
+        <div className='header__account-link'>
+          <AccountLinkButton />
+        </div>
+      )}
 
       <MobileNavigation isMenuOpen={isMenuOpen} onCloseMenu={closeMenuClick} />
     </header>
