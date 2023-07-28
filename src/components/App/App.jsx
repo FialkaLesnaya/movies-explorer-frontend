@@ -27,18 +27,26 @@ function App() {
     setCurrentUser(formData);
   }, []);
 
+  const handeLogOut = useCallback(() => {
+      localStorage.removeItem("JWT_SECRET_KEY");
+      setLoggedIn(false);
+      setCurrentUser(currentUserObject);
+      navigate("/signin", { replace: true });
+  }, [navigate]);
+
   useEffect(() => {
     const token = localStorage.getItem('JWT_SECRET_KEY');
     if (token) {
       setLoggedIn(true);
     }
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
       MainApi.checkMe()
         .then((data) => {
           setCurrentUser(data);
+          
         })
         .catch((err) => {
           console.log(`Ошибка загрузки данных ${err}`);
@@ -58,7 +66,7 @@ function App() {
 
           <Route
             path='/profile'
-            element={<Profile handleUserDataChange={handleUserDataChange} />}
+            element={<Profile handeLogOut={handeLogOut} handleUserDataChange={handleUserDataChange} />}
           />
 
           <Route path='/signin' element={<Login handleLogin={handleLogin} />} />

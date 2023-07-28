@@ -4,7 +4,7 @@ import Header from 'components/common/Header/Header';
 import { CurrentUserContext } from 'contexts/CurrentUserContext';
 import useEditProfile from 'hooks/useEditProfile';
 
-function Profile({handleUserDataChange}) {
+function Profile({handleUserDataChange, handeLogOut}) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -85,6 +85,7 @@ function Profile({handleUserDataChange}) {
               <button
                 className='profile__button profile__button--exit'
                 type='button'
+                onClick={handeLogOut}
               >
                 Выйти из аккаунта
               </button>

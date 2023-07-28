@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const loggedIn = useContext(CurrentUserContext) != null;
+  const currentUserContext = useContext(CurrentUserContext);
+  const loggedIn = currentUserContext.name !== '' && currentUserContext.email !== '';
 
   const openMenuClick = useCallback(() => {
     setIsMenuOpen(true);
