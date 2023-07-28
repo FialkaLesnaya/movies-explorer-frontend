@@ -4,16 +4,19 @@ import Header from 'components/common/Header/Header';
 import { CurrentUserContext } from 'contexts/CurrentUserContext';
 import useEditProfile from 'hooks/useEditProfile';
 
-function Profile({handleUserDataChange, handeLogOut}) {
+function Profile({ handleUserDataChange, handeLogOut }) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const { onSubmit, isEmptyForm, errorMessage } = useEditProfile({
-    name,
-    email,
-  }, handleUserDataChange);
-  const hasSameValue = (name === currentUser.name && email === currentUser.email);
+  const { onSubmit, isEmptyForm, errorMessage } = useEditProfile(
+    {
+      name,
+      email,
+    },
+    handleUserDataChange
+  );
+  const hasSameValue = name === currentUser.name && email === currentUser.email;
 
   useEffect(() => {
     setName(currentUser.name);
@@ -72,13 +75,15 @@ function Profile({handleUserDataChange, handeLogOut}) {
             </div>
 
             <div className='profile__actions'>
-            {errorMessage.length > 0 && (
-              <p className='profile__error'>
-                {errorMessage}
-              </p>
-            )}
+              {errorMessage.length > 0 && (
+                <p className='profile__error'>{errorMessage}</p>
+              )}
 
-              <button className='profile__button' type='submit' disabled={isEmptyForm || hasSameValue}>
+              <button
+                className='profile__button'
+                type='submit'
+                disabled={isEmptyForm || hasSameValue}
+              >
                 Редактировать
               </button>
 

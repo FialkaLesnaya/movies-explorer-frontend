@@ -16,7 +16,7 @@ function Movies() {
 
   return (
     <>
-      <Header isMainPage={false} />
+      <Header />
       <main className='movies'>
         <section className='movies__container'>
           <SearchForm handleSearch={handleSearch} />

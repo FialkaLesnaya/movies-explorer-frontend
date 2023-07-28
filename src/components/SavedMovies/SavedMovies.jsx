@@ -32,7 +32,7 @@ function SavedMovies() {
 
   return (
     <>
-      <Header isMainPage={false} />
+      <Header />
       <main className='saved-movies'>
         <section className='saved-movies__container'>
           <SearchForm />
