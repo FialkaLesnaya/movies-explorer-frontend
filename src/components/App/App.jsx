@@ -8,7 +8,10 @@ import Profile from 'components/Profile/Profile';
 import Register from 'components/Register/Register';
 import Login from 'components/Login/Login';
 import { useCallback, useEffect, useState } from 'react';
-import { CurrentUserContext, currentUserObject } from 'contexts/CurrentUserContext';
+import {
+  CurrentUserContext,
+  currentUserObject,
+} from 'contexts/CurrentUserContext';
 import { MainApi } from 'utils/MainApi';
 
 function App() {
@@ -18,6 +21,10 @@ function App() {
 
   const handleLogin = useCallback(() => {
     setLoggedIn(true);
+  }, []);
+
+  const handleUserDataChange = useCallback((formData) => {
+    setCurrentUser(formData);
   }, []);
 
   useEffect(() => {
@@ -30,7 +37,7 @@ function App() {
   useEffect(() => {
     if (loggedIn) {
       MainApi.checkMe()
-        .then(( data ) => {
+        .then((data) => {
           setCurrentUser(data);
         })
         .catch((err) => {
@@ -49,7 +56,10 @@ function App() {
 
           <Route path='/saved-movies' element={<SavedMovies />} />
 
-          <Route path='/profile' element={<Profile />} />
+          <Route
+            path='/profile'
+            element={<Profile handleUserDataChange={handleUserDataChange} />}
+          />
 
           <Route path='/signin' element={<Login handleLogin={handleLogin} />} />
 

@@ -1,16 +1,42 @@
+import { useContext, useEffect, useState } from 'react';
 import './Profile.css';
 import Header from 'components/common/Header/Header';
+import { CurrentUserContext } from 'contexts/CurrentUserContext';
+import useEditProfile from 'hooks/useEditProfile';
 
-function Profile() {
+function Profile({handleUserDataChange}) {
+  const currentUser = useContext(CurrentUserContext);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  const { onSubmit, isEmptyForm, errorMessage } = useEditProfile({
+    name,
+    email,
+  }, handleUserDataChange);
+  const hasSameValue = (name === currentUser.name && email === currentUser.email);
+
+  useEffect(() => {
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+  }, [currentUser]);
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
+  }
+
   return (
     <>
-      <Header isMainPage={false} />
+      <Header />
 
       <main className='profile'>
         <section className='profile__container'>
-          <h2 className='profile__title'>Привет, Фиалка!</h2>
+          <h2 className='profile__title'>Привет, {currentUser.name}!</h2>
 
-          <form className='profile__form'>
+          <form className='profile__form' onSubmit={onSubmit}>
             <div className='profile__form-item'>
               <label htmlFor='profile-name' className='profile__label'>
                 Имя
@@ -24,7 +50,8 @@ function Profile() {
                 placeholder='Введите имя'
                 minLength={2}
                 maxLength={30}
-                value='Фиалка'
+                value={name}
+                onChange={handleNameChange}
               />
             </div>
 
@@ -39,12 +66,19 @@ function Profile() {
                 id='profile-email'
                 name='profile-email'
                 placeholder='Введите email'
-                value='pochta@yandex.ru'
+                value={email}
+                onChange={handleEmailChange}
               />
             </div>
 
             <div className='profile__actions'>
-              <button className='profile__button' type='submit'>
+            {errorMessage.length > 0 && (
+              <p className='profile__error'>
+                {errorMessage}
+              </p>
+            )}
+
+              <button className='profile__button' type='submit' disabled={isEmptyForm || hasSameValue}>
                 Редактировать
               </button>
 
