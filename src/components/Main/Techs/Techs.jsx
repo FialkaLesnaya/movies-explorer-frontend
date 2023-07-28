@@ -18,7 +18,7 @@ function Techs() {
 
         <div className='techs__content-list'>
           {list.map((value) => (
-            <div className='techs__content-item'>{value}</div>
+            <div key={value} className='techs__content-item'>{value}</div>
           ))}
         </div>
       </div>
