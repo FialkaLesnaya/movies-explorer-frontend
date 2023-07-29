@@ -5,8 +5,8 @@ function MoviesCard({
   movie,
   isFavoriteBlock = false,
   isLiked = false,
-  handleLike,
-  handleDeleteLike,
+  onSetLike,
+  onDeleteLike,
 }) {
   const iconStyle = isLiked
     ? 'movies-card__action--fill'
@@ -17,13 +17,13 @@ function MoviesCard({
 
   const formattedTime = hours + 'ч ' + minutes + 'м';
 
-  const onLike = useCallback(() => {
+  const onClick = useCallback(() => {
     if (isLiked) {
-      handleDeleteLike(movie._id);
+      onDeleteLike(movie.movieId);
       return;
     }
-    handleLike(movie);
-  }, [isLiked, movie, handleLike, handleDeleteLike]);
+    onSetLike(movie);
+  }, [isLiked, movie, onSetLike, onDeleteLike]);
 
   return (
     <div className='movies-card'>
@@ -40,7 +40,7 @@ function MoviesCard({
             (isFavoriteBlock ? 'movies-card__action--close' : iconStyle)
           }
           type='button'
-          onClick={onLike}
+          onClick={onClick}
         ></button>
       </div>
 

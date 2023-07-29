@@ -5,8 +5,8 @@ function MoviesCardList({
   cardList,
   isFavoriteBlock = false,
   limit = 5,
-  handleLike,
-  handleDeleteLike,
+  onSetLike,
+  onDeleteLike,
   savedIds = [],
 }) {
   return (
@@ -17,8 +17,8 @@ function MoviesCardList({
           movie={item}
           isLiked={savedIds.includes(item.movieId)}
           isFavoriteBlock={isFavoriteBlock}
-          handleLike={handleLike}
-          handleDeleteLike={handleDeleteLike}
+          onSetLike={onSetLike}
+          onDeleteLike={onDeleteLike}
         />
       ))}
     </div>

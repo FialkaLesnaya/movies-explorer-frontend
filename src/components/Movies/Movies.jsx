@@ -8,28 +8,15 @@ import useLoadMovies from 'hooks/useLoadMovies';
 import useSearch from 'hooks/useSearch';
 import MoviesCardListStates from 'components/common/MoviesCardListStates/MoviesCardListStates';
 import useCardLimit from 'hooks/useCardLimit';
-import { useCallback, useContext } from 'react';
-import { MainApi } from 'utils/MainApi';
-import { CurrentUserContext } from 'contexts/CurrentUserContext';
 import useLoadSavedMovies from 'hooks/useLoadSavedMovies';
+import useCardLike from 'hooks/useCardLike';
 
 function Movies() {
   const { initialMovies, isError, isLoading } = useLoadMovies();
   const { initialSavedMovies } = useLoadSavedMovies();
   const { movies, handleSearch, hasSearchValue } = useSearch({ initialMovies });
   const { cardLimit, handleLoadMore } = useCardLimit();
-  const currentUserContext = useContext(CurrentUserContext);
-
-  const handleLike = useCallback(
-    (movie) => {
-      MainApi.likeMovie({ ...movie, owner: currentUserContext.email });
-    },
-    [currentUserContext]
-  );
-
-  const handleDeleteLike = useCallback((movieId) => {
-    MainApi.deleteLikeMovie(movieId);
-  }, []);
+  const { onSetLike, onDeleteLike } = useCardLike();
 
   return (
     <>
@@ -48,8 +35,8 @@ function Movies() {
           {movies.length > 0 && (
             <MoviesCardList
               savedIds={initialSavedMovies.map((item) => item.movieId)}
-              handleLike={handleLike}
-              handleDeleteLike={handleDeleteLike}
+              onSetLike={onSetLike}
+              onDeleteLike={onDeleteLike}
               cardList={movies}
               limit={cardLimit}
             />
