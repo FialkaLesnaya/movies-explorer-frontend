@@ -1,10 +1,8 @@
 import Footer from 'components/common/Footer/Footer';
 import './SavedMovies.css';
 import Header from 'components/common/Header/Header';
-import LoadingButton from 'components/common/LoadingButton/LoadingButton';
 import SearchForm from 'components/common/SearchForm/SearchForm';
 import MoviesCardList from 'components/common/MoviesCardList/MoviesCardList';
-import useCardLimit from 'hooks/useCardLimit';
 import useSearch from 'hooks/useSearch';
 import MoviesCardListStates from 'components/common/MoviesCardListStates/MoviesCardListStates';
 import useSavedMovies from 'hooks/useSavedMovies';
@@ -21,7 +19,6 @@ function SavedMovies() {
   const { movies, handleSearch, hasSearchValue } = useSearch({
     initialMovies: savedMovies,
   });
-  const { cardLimit, handleLoadMore } = useCardLimit();
 
   return (
     <>
@@ -41,15 +38,11 @@ function SavedMovies() {
             <MoviesCardList
               savedMovies={savedMovies}
               cardList={savedMovies}
-              limit={cardLimit}
+              limit={savedMovies.length}
               isFavoriteBlock
               onSetLike={onSetLike}
               onDeleteLike={onDeleteLike}
             />
-          )}
-
-          {savedMovies.length > cardLimit && (
-            <LoadingButton onChange={handleLoadMore} />
           )}
         </section>
       </main>
