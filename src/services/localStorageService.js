@@ -8,7 +8,7 @@ class LocalStorageService {
   }
 
   getSearchValue() {
-    return localStorage.getItem('MOVIES_SEARCH_STORAGE');
+    return localStorage.getItem('MOVIES_SEARCH_STORAGE') ?? '';
   }
 
   setSearchValue(searchValue) {
@@ -16,7 +16,7 @@ class LocalStorageService {
   }
 
   getCheckboxValue() {
-    return localStorage.getItem('MOVIES_SEARCH_FILTERED_STORAGE') === 'true';
+    return localStorage.getItem('MOVIES_SEARCH_FILTERED_STORAGE') === 'true' ?? false;
   }
 
   getToken() {
