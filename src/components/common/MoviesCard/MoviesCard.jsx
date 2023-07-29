@@ -1,7 +1,14 @@
+import { useCallback } from 'react';
 import './MoviesCard.css';
 
-function MoviesCard({ movie, isFavoriteBlock = false }) {
-  const iconStyle = false
+function MoviesCard({
+  movie,
+  isFavoriteBlock = false,
+  isLiked = false,
+  handleLike,
+  handleDeleteLike,
+}) {
+  const iconStyle = isLiked
     ? 'movies-card__action--fill'
     : 'movies-card__action--not-fill';
 
@@ -9,6 +16,14 @@ function MoviesCard({ movie, isFavoriteBlock = false }) {
   const minutes = movie.duration % 60;
 
   const formattedTime = hours + 'ч ' + minutes + 'м';
+
+  const onLike = useCallback(() => {
+    if (isLiked) {
+      handleDeleteLike(movie._id);
+      return;
+    }
+    handleLike(movie);
+  }, [isLiked, movie, handleLike, handleDeleteLike]);
 
   return (
     <div className='movies-card'>
@@ -25,11 +40,12 @@ function MoviesCard({ movie, isFavoriteBlock = false }) {
             (isFavoriteBlock ? 'movies-card__action--close' : iconStyle)
           }
           type='button'
+          onClick={onLike}
         ></button>
       </div>
 
       <img
-        src={'https://api.nomoreparties.co/' + movie.image.url}
+        src={movie.image}
         alt={movie.nameRU}
         className='movies-card__photo'
       />

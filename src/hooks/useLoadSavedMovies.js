@@ -9,8 +9,8 @@ const useLoadSavedMovies = () => {
   useEffect(() => {
     setIsLoading(true);
     MainApi.loadSavedMovies()
-      .then((data) => {
-        setInitialSavedMovies(data);
+      .then((response) => {
+        setInitialSavedMovies(response.data);
         setIsLoading(false);
       })
       .catch(() => {

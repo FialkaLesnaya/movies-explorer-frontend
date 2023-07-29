@@ -67,9 +67,7 @@ class MainApiService {
     return this._request(`${this.baseUrl}/movies`, {
       method: 'POST',
       headers: this.headers,
-      body: JSON.stringify({
-        data: data,
-      }),
+      body: JSON.stringify(data),
     });
   }
 
