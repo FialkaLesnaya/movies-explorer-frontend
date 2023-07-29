@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import AccountLinkButton from '../AccountLinkButton/AccountLinkButton';
 import './MobileNavigation.css';
 
@@ -35,15 +36,15 @@ function MobileNavigation({ onCloseMenu, isMenuOpen }) {
         <ul className='mobile-navigation__list'>
           {links.map((item) => (
             <li key={item.title} className='mobile-navigation__item'>
-              <a
-                href={item.link}
+              <Link
                 className={
                   'mobile-navigation__item-link' +
                   (item.isActive ? ' mobile-navigation__item-link--active' : '')
                 }
+                to={item.link}
               >
                 {item.title}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
