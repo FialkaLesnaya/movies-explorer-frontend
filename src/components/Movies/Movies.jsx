@@ -13,7 +13,7 @@ import useCardLike from 'hooks/useCardLike';
 
 function Movies() {
   const { initialMovies, isError, isLoading } = useLoadMovies();
-  const { initialSavedMovies } = useLoadSavedMovies();
+  const { savedMovies } = useLoadSavedMovies();
   const { movies, handleSearch, hasSearchValue } = useSearch({ initialMovies });
   const { cardLimit, handleLoadMore } = useCardLimit();
   const { onSetLike, onDeleteLike } = useCardLike();
@@ -34,7 +34,7 @@ function Movies() {
 
           {movies.length > 0 && (
             <MoviesCardList
-              savedIds={initialSavedMovies.map((item) => item.movieId)}
+              savedMovies={savedMovies}
               onSetLike={onSetLike}
               onDeleteLike={onDeleteLike}
               cardList={movies}

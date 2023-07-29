@@ -7,6 +7,7 @@ function MoviesCard({
   isLiked = false,
   onSetLike,
   onDeleteLike,
+  likedId,
 }) {
   const iconStyle = isLiked
     ? 'movies-card__action--fill'
@@ -19,11 +20,11 @@ function MoviesCard({
 
   const onClick = useCallback(() => {
     if (isLiked) {
-      onDeleteLike(movie.movieId);
+      onDeleteLike(likedId);
       return;
     }
     onSetLike(movie);
-  }, [isLiked, movie, onSetLike, onDeleteLike]);
+  }, [isLiked, movie, onSetLike, onDeleteLike, likedId]);
 
   return (
     <div className='movies-card'>

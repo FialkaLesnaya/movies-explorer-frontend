@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { MainApi } from 'utils/MainApi';
 
 const useLoadSavedMovies = () => {
-  const [initialSavedMovies, setInitialSavedMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -10,7 +10,7 @@ const useLoadSavedMovies = () => {
     setIsLoading(true);
     MainApi.loadSavedMovies()
       .then((response) => {
-        setInitialSavedMovies(response.data);
+        setSavedMovies(response.data);
         setIsLoading(false);
       })
       .catch(() => {
@@ -20,7 +20,7 @@ const useLoadSavedMovies = () => {
   }, []);
 
   return {
-    initialSavedMovies,
+    savedMovies,
     isError,
     isLoading,
   };
