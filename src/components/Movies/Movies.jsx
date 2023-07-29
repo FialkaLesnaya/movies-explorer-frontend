@@ -4,15 +4,14 @@ import Header from 'components/common/Header/Header';
 import LoadingButton from '../common/LoadingButton/LoadingButton';
 import SearchForm from 'components/common/SearchForm/SearchForm';
 import MoviesCardList from 'components/common/MoviesCardList/MoviesCardList';
-import useLoadMovies from 'hooks/useLoadMovies';
-import useSearch from 'hooks/useSearch';
 import MoviesCardListStates from 'components/common/MoviesCardListStates/MoviesCardListStates';
 import useCardLimit from 'hooks/useCardLimit';
 import useSavedMovies from 'hooks/useSavedMovies';
+import useMovies from 'hooks/useMovies';
 
 function Movies() {
-  const { initialMovies, isError, isLoading } = useLoadMovies();
-  const { movies, handleSearch, hasSearchValue } = useSearch({ initialMovies });
+  // const { initialMovies, isError, isLoading } = useLoadMovies();
+  // const { movies, handleSearch, hasSearchValue } = useSearch({ initialMovies });
   const { cardLimit, handleLoadMore } = useCardLimit();
   const {
     savedMovies,
@@ -22,6 +21,9 @@ function Movies() {
     onSetLike,
     onDeleteLike,
   } = useSavedMovies();
+
+  const { filteredMovies, isError, isLoading, hasSearchValue, handleSearch } =
+    useMovies();
 
   return (
     <>
@@ -33,21 +35,21 @@ function Movies() {
           <MoviesCardListStates
             isError={isError || isSavedError}
             isLoading={isLoading || isSavedLoading}
-            nothingFound={movies.length === 0 && hasSearchValue}
-            tryToSearch={movies.length === 0 && !hasSearchValue}
+            nothingFound={filteredMovies.length === 0 && hasSearchValue}
+            tryToSearch={filteredMovies.length === 0 && !hasSearchValue}
           />
 
-          {movies.length > 0 && (
+          {filteredMovies.length > 0 && (
             <MoviesCardList
               savedMovies={savedMovies}
               onSetLike={onSetLike}
               onDeleteLike={onDeleteLike}
-              cardList={movies}
+              cardList={filteredMovies}
               limit={cardLimit}
             />
           )}
 
-          {movies.length > 0 && movies.length > cardLimit && (
+          {filteredMovies.length > cardLimit && (
             <LoadingButton onChange={handleLoadMore} />
           )}
         </section>
