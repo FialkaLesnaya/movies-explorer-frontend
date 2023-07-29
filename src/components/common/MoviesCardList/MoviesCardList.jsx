@@ -10,8 +10,6 @@ function MoviesCardList({
   onDeleteLike,
   savedMovies = [],
 }) {
-  const savedIds = savedMovies.map(item => item.movieId);
-
   const getLikedId = useCallback((movieId) => {
     const savedMovie = savedMovies.filter(item => item.movieId === movieId)[0];
 
@@ -29,7 +27,7 @@ function MoviesCardList({
           key={item.movieId}
           movie={item}
           likedId={getLikedId(item.movieId)}
-          isLiked={savedIds.includes(item.movieId)}
+          isLiked={savedMovies.map(item => item.movieId).includes(item.movieId)}
           isFavoriteBlock={isFavoriteBlock}
           onSetLike={onSetLike}
           onDeleteLike={onDeleteLike}

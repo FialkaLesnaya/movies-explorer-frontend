@@ -8,15 +8,20 @@ import useLoadMovies from 'hooks/useLoadMovies';
 import useSearch from 'hooks/useSearch';
 import MoviesCardListStates from 'components/common/MoviesCardListStates/MoviesCardListStates';
 import useCardLimit from 'hooks/useCardLimit';
-import useLoadSavedMovies from 'hooks/useLoadSavedMovies';
-import useCardLike from 'hooks/useCardLike';
+import useSavedMovies from 'hooks/useSavedMovies';
 
 function Movies() {
   const { initialMovies, isError, isLoading } = useLoadMovies();
-  const { savedMovies } = useLoadSavedMovies();
   const { movies, handleSearch, hasSearchValue } = useSearch({ initialMovies });
   const { cardLimit, handleLoadMore } = useCardLimit();
-  const { onSetLike, onDeleteLike } = useCardLike();
+  const {
+    savedMovies,
+    isSavedError,
+    isLikeError,
+    isSavedLoading,
+    onSetLike,
+    onDeleteLike,
+  } = useSavedMovies();
 
   return (
     <>
@@ -26,8 +31,8 @@ function Movies() {
           <SearchForm handleSearch={handleSearch} />
 
           <MoviesCardListStates
-            isError={isError}
-            isLoading={isLoading}
+            isError={isError || isSavedError}
+            isLoading={isLoading || isSavedLoading}
             nothingFound={movies.length === 0 && hasSearchValue}
             tryToSearch={movies.length === 0 && !hasSearchValue}
           />

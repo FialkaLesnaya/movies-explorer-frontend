@@ -3,20 +3,20 @@ import { MainApi } from 'utils/MainApi';
 
 const useSavedMovies = () => {
   const [savedMovies, setSavedMovies] = useState([]);
-  const [isError, setIsError] = useState(false);
+  const [isSavedError, setISavedError] = useState(false);
   const [isLikeError, setIsLikeError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSavedLoading, setIsSavedLoading] = useState(false);
 
   const onLoad = useCallback(() => {
-    setIsLoading(true);
+    setIsSavedLoading(true);
     MainApi.loadSavedMovies()
       .then((response) => {
         setSavedMovies(response.data);
-        setIsLoading(false);
+        setIsSavedLoading(false);
       })
       .catch(() => {
-        setIsError(true);
-        setIsLoading(false);
+        setISavedError(true);
+        setIsSavedLoading(false);
       });
   }, []);
 
@@ -24,9 +24,9 @@ const useSavedMovies = () => {
     (movie) => {
       setIsLikeError(false);
       MainApi.likeMovie({ ...movie, owner: '1' })
-        .then((data) => {
+        .then((response) => {
           const movies = savedMovies;
-          movies.push(data);
+          movies.push(response.data);
           setSavedMovies(movies);
         })
         .catch(() => {
@@ -40,8 +40,8 @@ const useSavedMovies = () => {
     (id) => {
       setIsLikeError(false);
       MainApi.deleteLikeMovie(id)
-        .then(() => {
-          setSavedMovies(savedMovies.filter((item) => item._id !== id));
+        .then((response) => {
+          setSavedMovies(savedMovies.filter((item) => item.movieId !== response.data.movieId));
         })
         .catch(() => {
           setIsLikeError(true);
@@ -56,9 +56,9 @@ const useSavedMovies = () => {
 
   return {
     savedMovies,
-    isError,
+    isSavedError,
     isLikeError,
-    isLoading,
+    isSavedLoading,
     onSetLike,
     onDeleteLike,
   };
