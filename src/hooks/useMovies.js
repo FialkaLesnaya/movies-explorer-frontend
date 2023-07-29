@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { LocalStorage } from 'services/localStorageService';
 import { MoviesApi } from 'utils/MoviesApi';
 
 const filterMovies = (movies, isFiltered, searchValue) => {
@@ -27,6 +28,22 @@ const useMovies = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearchValue, setHasSearchValue] = useState(false);
 
+  useEffect(() => {
+    const moviesStorage = LocalStorage.getMovies();
+
+    if (moviesStorage) {
+      setInitialMovies(moviesStorage);
+      setFilteredMovies(
+        filterMovies(
+          moviesStorage,
+          LocalStorage.getCheckboxValue(),
+          LocalStorage.getSearchValue()
+        )
+      );
+      setHasSearchValue(LocalStorage.getSearchValue().length > 0);
+    }
+  }, []);
+
   const handleLoad = useCallback(() => {
     setIsLoading(true);
     return MoviesApi.loadMovies()
@@ -42,6 +59,7 @@ const useMovies = () => {
             thumbnail: 'https://api.nomoreparties.co/' + item.image.url,
           };
         });
+        LocalStorage.setMovies(movies);
         setInitialMovies(movies);
         setIsLoading(false);
         return movies;
@@ -54,6 +72,8 @@ const useMovies = () => {
 
   const handleSearch = useCallback(
     (isFiltered = false, searchValue = '') => {
+      LocalStorage.setCheckboxValue(isFiltered);
+      LocalStorage.setSearchValue(searchValue);
       if (searchValue.length > 0 && initialMovies.length === 0) {
         return handleLoad().then((movies) => {
           setFilteredMovies(filterMovies(movies, isFiltered, searchValue));

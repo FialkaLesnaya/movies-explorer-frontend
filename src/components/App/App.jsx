@@ -13,6 +13,7 @@ import {
   currentUserObject,
 } from 'contexts/CurrentUserContext';
 import { MainApi } from 'utils/MainApi';
+import { LocalStorage } from 'services/localStorageService';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -28,15 +29,14 @@ function App() {
   }, []);
 
   const handeLogOut = useCallback(() => {
-      localStorage.removeItem("JWT_SECRET_KEY");
+      LocalStorage.reset();
       setLoggedIn(false);
       setCurrentUser(currentUserObject);
       navigate("/signin", { replace: true });
   }, [navigate]);
 
   useEffect(() => {
-    const token = localStorage.getItem('JWT_SECRET_KEY');
-    if (token) {
+    if (LocalStorage.getToken()) {
       setLoggedIn(true);
     }
   }, []);

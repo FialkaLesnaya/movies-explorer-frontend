@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LocalStorage } from 'services/localStorageService';
 import { MainApi } from 'utils/MainApi';
 
 const useLogin = (formData, handleLogin) => {
@@ -20,7 +21,7 @@ const useLogin = (formData, handleLogin) => {
 
       MainApi.login(formData.password, formData.email)
         .then((data) => {
-          localStorage.setItem('JWT_SECRET_KEY', data.token);
+          LocalStorage.setToken(data.token);
           handleLogin(true);
           navigate('/movies', { replace: true });
         })

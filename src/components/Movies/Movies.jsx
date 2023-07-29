@@ -25,6 +25,8 @@ function Movies() {
   const { filteredMovies, isError, isLoading, hasSearchValue, handleSearch } =
     useMovies();
 
+  const hasAnyState = isError || isSavedError || isLoading || isSavedLoading;
+
   return (
     <>
       <Header />
@@ -39,7 +41,7 @@ function Movies() {
             tryToSearch={filteredMovies.length === 0 && !hasSearchValue}
           />
 
-          {filteredMovies.length > 0 && (
+          {!hasAnyState && filteredMovies.length > 0 && (
             <MoviesCardList
               savedMovies={savedMovies}
               onSetLike={onSetLike}
@@ -49,7 +51,7 @@ function Movies() {
             />
           )}
 
-          {filteredMovies.length > cardLimit && (
+          {!hasAnyState && filteredMovies.length > cardLimit && (
             <LoadingButton onChange={handleLoadMore} />
           )}
         </section>

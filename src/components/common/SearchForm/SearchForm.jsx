@@ -1,10 +1,16 @@
 import FilterCheckbox from 'components/common/FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { LocalStorage } from 'services/localStorageService';
 
 function SearchForm({ handleSearch }) {
   const [searchValue, setSearchValue] = useState('');
   const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    setIsChecked(LocalStorage.getCheckboxValue());
+    setSearchValue(LocalStorage.getSearchValue());
+  }, []);
 
   const onChange = useCallback((event) => {
     const { value } = event.target;
