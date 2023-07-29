@@ -18,16 +18,25 @@ function MoviesCard({
 
   const formattedTime = hours + 'ч ' + minutes + 'м';
 
-  const onClick = useCallback(() => {
-    if (isLiked) {
-      onDeleteLike(likedId);
-      return;
-    }
-    onSetLike(movie);
-  }, [isLiked, movie, onSetLike, onDeleteLike, likedId]);
+  const onClick = useCallback(
+    (event) => {
+      event.preventDefault();
+      if (isLiked) {
+        onDeleteLike(likedId);
+        return;
+      }
+      onSetLike(movie);
+    },
+    [isLiked, movie, onSetLike, onDeleteLike, likedId]
+  );
 
   return (
-    <div className='movies-card'>
+    <a
+      className='movies-card'
+      href={movie.trailerLink}
+      target='_blank'
+      rel='noreferrer'
+    >
       <div className='movies-card__header'>
         <div className='movies-card__info'>
           <h3 className='movies-card__title'>{movie.nameRU}</h3>
@@ -50,7 +59,7 @@ function MoviesCard({
         alt={movie.nameRU}
         className='movies-card__photo'
       />
-    </div>
+    </a>
   );
 }
 
