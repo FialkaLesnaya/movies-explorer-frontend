@@ -6,6 +6,7 @@ import { LocalStorage } from 'services/localStorageService';
 function SearchForm({ handleSearch }) {
   const [searchValue, setSearchValue] = useState('');
   const [isChecked, setIsChecked] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     setIsChecked(LocalStorage.getCheckboxValue());
@@ -14,13 +15,21 @@ function SearchForm({ handleSearch }) {
 
   const onChange = useCallback((event) => {
     const { value } = event.target;
+    
+    setIsError(false);
     setSearchValue(value);
   }, []);
 
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      handleSearch(isChecked, searchValue);
+
+      if(searchValue.length > 0) {
+        handleSearch(isChecked, searchValue);
+        return;
+      }
+
+      setIsError(true);
     },
     [handleSearch, isChecked, searchValue]
   );
@@ -54,6 +63,12 @@ function SearchForm({ handleSearch }) {
           onKeyDown={onKeyDown}
           placeholder='Фильмы'
         ></input>
+        
+        {isError && (
+          <p className='search-form__error-text'>
+          Нужно ввести ключевое слово
+          </p>
+        )}
 
         <button className='search-form__button' type='submit'>
           Найти
