@@ -4,12 +4,13 @@ import Logo from '../Logo/Logo';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
 import './Header.css';
 import { CurrentUserContext } from 'contexts/CurrentUserContext';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const currentUserContext = useContext(CurrentUserContext);
-  const loggedIn = currentUserContext.name !== '' && currentUserContext.email !== '';
+  const loggedIn =
+    currentUserContext.name !== '' && currentUserContext.email !== '';
 
   const openMenuClick = useCallback(() => {
     setIsMenuOpen(true);
@@ -25,28 +26,32 @@ function Header() {
 
       {loggedIn && (
         <nav className='header__nav'>
-          <Link
-            className='header__link-base header__nav-link header__nav-link--active'
+          <NavLink
             to='/movies'
+            className={({ isActive }) =>
+              'header__link-base header__nav-link' + (isActive ? ' header__nav-link--active' : '')
+            }
           >
             Фильмы
-          </Link>
+          </NavLink>
 
-          <Link
-            className='header__link-base header__nav-link'
+          <NavLink
+          className={({ isActive }) =>
+            'header__link-base header__nav-link' + (isActive ? ' header__nav-link--active' : '')
+          }
             to='/saved-movies'
           >
             Сохраненные фильмы
-          </Link>
+          </NavLink>
         </nav>
       )}
 
       {!loggedIn && (
         <nav className='header__auth-nav'>
-          <Link className='header__link-base header__auth-link' to='/signup'>
+          <Link className='header__link-base header__auth-link' to='/signup' >
             Регистрация
           </Link>
-          
+
           <Link
             className='header__link-base header__auth-link header__auth-link--button'
             to='/signin'

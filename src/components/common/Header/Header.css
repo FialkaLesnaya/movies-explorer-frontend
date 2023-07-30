@@ -35,6 +35,10 @@
   line-height: 18px;
 }
 
+.header__link-base:active {
+  font-weight: 500;
+}
+
 .header__nav-link--active {
   font-weight: 500;
 }
