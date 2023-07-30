@@ -25,9 +25,7 @@ const useSavedMovies = () => {
       setIsLikeError(false);
       MainApi.likeMovie({ ...movie, owner: '1' })
         .then((response) => {
-          const movies = savedMovies;
-          movies.push(response.data);
-          setSavedMovies(movies);
+          setSavedMovies([...savedMovies, response.data]);
         })
         .catch(() => {
           setIsLikeError(true);
