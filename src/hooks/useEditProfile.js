@@ -1,37 +1,56 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { MainApi } from 'utils/MainApi';
+import useValidation from './useValidation';
 
-const useEditProfile = (formData, handleUserDataChange) => {
-  const [errorMessage, setErrorMessage] = useState('');
+const useEditProfile = (currentUser, handleUserDataChange) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const { errorMessage, validateForm, validateResponse, resetErrors } =
+    useValidation();
 
-  const isEmptyForm =
-    formData.name === '' || formData.email === '';
+  useEffect(() => {
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+  }, [currentUser]);
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
+  }
+
+  useEffect(() => {
+    validateForm(name, email);
+  }, [name, email, validateForm]);
 
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
+      resetErrors();
 
-      if (isEmptyForm) {
-        return;
-      }
-
-      setErrorMessage('');
-
-      MainApi.editProfile(formData.name, formData.email)
+      MainApi.editProfile(name, email)
         .then(() => {
-          handleUserDataChange(formData);
+          handleUserDataChange({ name: name.trim(), email });
         })
         .catch((errorMessage) => {
-          setErrorMessage(errorMessage);
+          validateResponse(errorMessage);
         });
     },
-    [formData, isEmptyForm, handleUserDataChange]
+    [name, email, handleUserDataChange, resetErrors, validateResponse]
   );
 
   return {
+    name,
+    email,
     onSubmit,
-    isEmptyForm,
     errorMessage,
+    formDisabled:
+      (name === currentUser.name && email === currentUser.email) ||
+      errorMessage.length > 0,
+    handleNameChange,
+    handleEmailChange,
   };
 };
 

@@ -6,30 +6,16 @@ import useEditProfile from 'hooks/useEditProfile';
 
 function Profile({ handleUserDataChange, handeLogOut }) {
   const currentUser = useContext(CurrentUserContext);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
 
-  const { onSubmit, isEmptyForm, errorMessage } = useEditProfile(
-    {
-      name,
-      email,
-    },
-    handleUserDataChange
-  );
-  const hasSameValue = name === currentUser.name && email === currentUser.email;
-
-  useEffect(() => {
-    setName(currentUser.name);
-    setEmail(currentUser.email);
-  }, [currentUser]);
-
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
+  const {
+    name,
+    email,
+    onSubmit,
+    errorMessage,
+    formDisabled,
+    handleNameChange,
+    handleEmailChange,
+  } = useEditProfile(currentUser, handleUserDataChange);
 
   return (
     <>
@@ -82,7 +68,7 @@ function Profile({ handleUserDataChange, handeLogOut }) {
               <button
                 className='profile__button'
                 type='submit'
-                disabled={isEmptyForm || hasSameValue}
+                disabled={formDisabled}
               >
                 Редактировать
               </button>
