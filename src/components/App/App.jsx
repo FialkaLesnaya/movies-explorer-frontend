@@ -14,9 +14,10 @@ import {
 } from 'contexts/CurrentUserContext';
 import { MainApi } from 'utils/MainApi';
 import { LocalStorage } from 'services/localStorageService';
+import ProtectedRouteElement from 'components/common/ProtectedRoute/ProtectedRoute';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(LocalStorage.getToken() != null);
   const [currentUser, setCurrentUser] = useState(currentUserObject);
   const navigate = useNavigate();
 
@@ -29,24 +30,17 @@ function App() {
   }, []);
 
   const handeLogOut = useCallback(() => {
-      LocalStorage.reset();
-      setLoggedIn(false);
-      setCurrentUser(currentUserObject);
-      navigate("/signin", { replace: true });
+    LocalStorage.reset();
+    setLoggedIn(false);
+    setCurrentUser(currentUserObject);
+    navigate('/signin', { replace: true });
   }, [navigate]);
-
-  useEffect(() => {
-    if (LocalStorage.getToken()) {
-      setLoggedIn(true);
-    }
-  }, []);
 
   useEffect(() => {
     if (loggedIn) {
       MainApi.checkMe()
         .then((data) => {
           setCurrentUser(data);
-          
         })
         .catch((err) => {
           console.log(`Ошибка загрузки данных ${err}`);
@@ -60,13 +54,34 @@ function App() {
         <Routes>
           <Route path='/' element={<Main />} />
 
-          <Route path='/movies' element={<Movies />} />
+          <Route
+            path='/movies'
+            element={
+              <ProtectedRouteElement loggedIn={loggedIn}>
+                <Movies />
+              </ProtectedRouteElement>
+            }
+          />
 
-          <Route path='/saved-movies' element={<SavedMovies />} />
+          <Route
+            path='/saved-movies'
+            element={
+              <ProtectedRouteElement loggedIn={loggedIn}>
+                <SavedMovies />
+              </ProtectedRouteElement>
+            }
+          />
 
           <Route
             path='/profile'
-            element={<Profile handeLogOut={handeLogOut} handleUserDataChange={handleUserDataChange} />}
+            element={
+              <ProtectedRouteElement loggedIn={loggedIn}>
+                <Profile
+                  handeLogOut={handeLogOut}
+                  handleUserDataChange={handleUserDataChange}
+                />
+              </ProtectedRouteElement>
+            }
           />
 
           <Route path='/signin' element={<Login handleLogin={handleLogin} />} />
