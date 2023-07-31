@@ -5,7 +5,7 @@ import { useState } from 'react';
 import useRegister from 'hooks/useRegister';
 import useValidation from 'hooks/useValidation';
 
-function Register() {
+function Register({ handleLogin }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +23,7 @@ function Register() {
     name,
     email,
     password,
-  });
+  }, handleLogin);
 
   function handleNameChange(e) {
     setName(e.target.value);

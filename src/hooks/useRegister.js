@@ -1,8 +1,9 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LocalStorage } from 'services/localStorageService';
 import { MainApi } from 'utils/MainApi';
 
-const useRegister = (formData) => {
+const useRegister = (formData, handleLogin) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -22,9 +23,12 @@ const useRegister = (formData) => {
       setIsLoading(true);
 
       MainApi.register(formData.name, formData.password, formData.email)
-        .then(() => {
+      .then(() => MainApi.login(formData.password, formData.email))
+        .then((data) => {
+          LocalStorage.setToken(data.token);
+          handleLogin(true);
           setIsLoading(false);
-          navigate('/signin', { replace: true });
+          navigate('/movies', { replace: true });
         })
         .catch((errorMessage) => {
           setErrorMessage(errorMessage);

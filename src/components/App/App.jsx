@@ -99,7 +99,7 @@ function App() {
             path='/signup'
             element={
               <ProtectedRouteElement loggedIn={loggedIn} isAuth>
-                <Register />
+                <Register handleLogin={handleLogin} />
               </ProtectedRouteElement>
             }
           />
