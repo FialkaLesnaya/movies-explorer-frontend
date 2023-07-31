@@ -15,10 +15,12 @@ import {
 import { MainApi } from 'utils/MainApi';
 import { LocalStorage } from 'services/localStorageService';
 import ProtectedRouteElement from 'components/common/ProtectedRoute/ProtectedRoute';
+import NotificationDialog from 'components/common/NotificationDialog/NotificationDialog';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(LocalStorage.getToken() != null);
   const [currentUser, setCurrentUser] = useState(currentUserObject);
+  const [isErrorOpened, setIsErrorOpened] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = useCallback(() => {
@@ -43,7 +45,7 @@ function App() {
           setCurrentUser(data);
         })
         .catch((err) => {
-          console.log(`Ошибка загрузки данных ${err}`);
+          setIsErrorOpened(true);
         });
     }
   }, [loggedIn]);
@@ -90,6 +92,8 @@ function App() {
 
           <Route path='*' element={<ErrorPage />} />
         </Routes>
+        
+        <NotificationDialog isOpened={isErrorOpened} handleClose={setIsErrorOpened} />
       </div>
     </CurrentUserContext.Provider>
   );

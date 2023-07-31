@@ -9,16 +9,24 @@ import useCardLimit from 'hooks/useCardLimit';
 import useSavedMovies from 'hooks/useSavedMovies';
 import useMovies from 'hooks/useMovies';
 import { LocalStorage } from 'services/localStorageService';
+import NotificationDialog from 'components/common/NotificationDialog/NotificationDialog';
+import { useEffect, useState } from 'react';
 
 function Movies() {
   const { cardLimit, handleLoadMore } = useCardLimit();
+  const [isErrorOpened, setIsErrorOpened] = useState(false);
   const {
     savedMovies,
     isSavedError,
     isSavedLoading,
+    isLikeError,
     onSetLike,
     onDeleteLike,
   } = useSavedMovies();
+
+  useEffect(() => {
+    setIsErrorOpened(isLikeError);
+  }, [isLikeError]);
 
   const { filteredMovies, isError, isLoading, hasSearchValue, handleSearch } =
     useMovies();
@@ -58,6 +66,8 @@ function Movies() {
           )}
         </section>
       </main>
+
+      <NotificationDialog isOpened={isErrorOpened} handleClose={setIsErrorOpened} />
       <Footer />
     </>
   );

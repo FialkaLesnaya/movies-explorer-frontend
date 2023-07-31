@@ -6,12 +6,16 @@ import MoviesCardList from 'components/common/MoviesCardList/MoviesCardList';
 import useSearch from 'hooks/useSearch';
 import MoviesCardListStates from 'components/common/MoviesCardListStates/MoviesCardListStates';
 import useSavedMovies from 'hooks/useSavedMovies';
+import NotificationDialog from 'components/common/NotificationDialog/NotificationDialog';
+import { useEffect, useState } from 'react';
 
 function SavedMovies() {
+  const [isErrorOpened, setIsErrorOpened] = useState(false);
   const {
     savedMovies,
     isSavedError,
     isSavedLoading,
+    isLikeError,
     onSetLike,
     onDeleteLike,
   } = useSavedMovies();
@@ -19,6 +23,10 @@ function SavedMovies() {
     initialMovies: savedMovies,
     hasPreselectedMovies: true,
   });
+
+  useEffect(() => {
+    setIsErrorOpened(isLikeError);
+  }, [isLikeError]);
 
   return (
     <>
@@ -46,6 +54,7 @@ function SavedMovies() {
           )}
         </section>
       </main>
+      <NotificationDialog isOpened={isErrorOpened} handleClose={setIsErrorOpened} />
       <Footer />
     </>
   );

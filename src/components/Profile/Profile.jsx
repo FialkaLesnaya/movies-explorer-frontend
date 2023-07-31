@@ -1,28 +1,31 @@
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import './Profile.css';
 import Header from 'components/common/Header/Header';
 import { CurrentUserContext } from 'contexts/CurrentUserContext';
 import useEditProfile from 'hooks/useEditProfile';
 import useValidation from 'hooks/useValidation';
+import NotificationDialog from 'components/common/NotificationDialog/NotificationDialog';
 
 function Profile({ handleUserDataChange, handeLogOut }) {
   const currentUser = useContext(CurrentUserContext);
-
   const [name, setName] = useState('');
+  const [isNotificationOpened, setIsNotificationOpened] = useState(false);
   const [email, setEmail] = useState('');
-  const {
-    nameError,
-    emailError,
-    validateName,
-    validateEmail,
-    hasAnyError,
-  } = useValidation();
+  const { nameError, emailError, validateName, validateEmail, hasAnyError } =
+    useValidation();
+  const handleDataChange = useCallback(
+    (formData) => {
+      handleUserDataChange(formData);
+      setIsNotificationOpened(true);
+    },
+    [handleUserDataChange]
+  );
   const { onSubmit, isEmptyForm, errorMessage } = useEditProfile(
     {
       name,
       email,
     },
-    handleUserDataChange
+    handleDataChange
   );
   useEffect(() => {
     setName(currentUser.name);
@@ -67,7 +70,9 @@ function Profile({ handleUserDataChange, handeLogOut }) {
                 onChange={handleNameChange}
               />
 
-              {nameError.length > 0 && (<p className='profile__input-error'>{nameError}</p>)}
+              {nameError.length > 0 && (
+                <p className='profile__input-error'>{nameError}</p>
+              )}
             </div>
 
             <div className='profile__form-item'>
@@ -85,7 +90,9 @@ function Profile({ handleUserDataChange, handeLogOut }) {
                 onChange={handleEmailChange}
               />
 
-              {emailError.length > 0 && (<p className='profile__input-error'>{emailError}</p>)}
+              {emailError.length > 0 && (
+                <p className='profile__input-error'>{emailError}</p>
+              )}
             </div>
 
             <div className='profile__actions'>
@@ -111,6 +118,12 @@ function Profile({ handleUserDataChange, handeLogOut }) {
             </div>
           </form>
         </section>
+
+        <NotificationDialog
+          isOpened={isNotificationOpened}
+          handleClose={setIsNotificationOpened}
+          isError={false}
+        />
       </main>
     </>
   );
