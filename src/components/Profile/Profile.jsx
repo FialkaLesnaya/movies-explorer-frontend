@@ -20,7 +20,7 @@ function Profile({ handleUserDataChange, handeLogOut }) {
     },
     [handleUserDataChange]
   );
-  const { onSubmit, isEmptyForm, errorMessage } = useEditProfile(
+  const { isLoading, onSubmit, isEmptyForm, errorMessage } = useEditProfile(
     {
       name,
       email,
@@ -103,7 +103,7 @@ function Profile({ handleUserDataChange, handeLogOut }) {
               <button
                 className='profile__button'
                 type='submit'
-                disabled={isEmptyForm || hasSameValue || hasAnyError}
+                disabled={isEmptyForm || hasSameValue || hasAnyError || isLoading}
               >
                 Редактировать
               </button>

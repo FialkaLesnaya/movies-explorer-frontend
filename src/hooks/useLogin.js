@@ -5,6 +5,7 @@ import { MainApi } from 'utils/MainApi';
 
 const useLogin = (formData, handleLogin) => {
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const isEmptyForm = formData.email === '' || formData.password === '';
@@ -19,14 +20,18 @@ const useLogin = (formData, handleLogin) => {
 
       setErrorMessage('');
 
+      setIsLoading(true);
+
       MainApi.login(formData.password, formData.email)
         .then((data) => {
           LocalStorage.setToken(data.token);
           handleLogin(true);
+          setIsLoading(false);
           navigate('/movies', { replace: true });
         })
         .catch((errorMessage) => {
           setErrorMessage(errorMessage);
+          setIsLoading(false);
         });
     },
     [formData, isEmptyForm, navigate, handleLogin]
@@ -36,6 +41,7 @@ const useLogin = (formData, handleLogin) => {
     onSubmit,
     isEmptyForm,
     errorMessage,
+    isLoading,
   };
 };
 

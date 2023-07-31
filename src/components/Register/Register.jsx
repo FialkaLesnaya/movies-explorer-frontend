@@ -19,7 +19,7 @@ function Register() {
     hasAnyError,
   } = useValidation();
 
-  const { onSubmit, isEmptyForm, errorMessage } = useRegister({
+  const { isLoading, onSubmit, isEmptyForm, errorMessage } = useRegister({
     name,
     email,
     password,
@@ -102,7 +102,7 @@ function Register() {
           <button
             className='register__submit'
             type='submit'
-            disabled={isEmptyForm || hasAnyError}
+            disabled={isEmptyForm || hasAnyError || isLoading}
           >
             Зарегистрироваться
           </button>

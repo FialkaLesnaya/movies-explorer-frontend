@@ -15,7 +15,7 @@ function Login({ handleLogin }) {
     validatePassword,
     hasAnyError,
   } = useValidation();
-  const { onSubmit, isEmptyForm, errorMessage } = useLogin(
+  const { isLoading, onSubmit, isEmptyForm, errorMessage } = useLogin(
     {
       email,
       password,
@@ -86,7 +86,7 @@ function Login({ handleLogin }) {
           <button
             className='login__submit'
             type='submit'
-            disabled={isEmptyForm || hasAnyError}
+            disabled={isEmptyForm || hasAnyError || isLoading}
           >
             Войти
           </button>

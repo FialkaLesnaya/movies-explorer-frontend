@@ -4,6 +4,7 @@ import { MainApi } from 'utils/MainApi';
 
 const useRegister = (formData) => {
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const isEmptyForm =
@@ -18,13 +19,16 @@ const useRegister = (formData) => {
       }
 
       setErrorMessage('');
+      setIsLoading(true);
 
       MainApi.register(formData.name, formData.password, formData.email)
         .then(() => {
+          setIsLoading(false);
           navigate('/signin', { replace: true });
         })
         .catch((errorMessage) => {
           setErrorMessage(errorMessage);
+          setIsLoading(false);
         });
     },
     [formData, isEmptyForm, navigate]
@@ -34,6 +38,7 @@ const useRegister = (formData) => {
     onSubmit,
     isEmptyForm,
     errorMessage,
+    isLoading,
   };
 };
 
