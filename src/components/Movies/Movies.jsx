@@ -8,6 +8,7 @@ import MoviesCardListStates from 'components/common/MoviesCardListStates/MoviesC
 import useCardLimit from 'hooks/useCardLimit';
 import useSavedMovies from 'hooks/useSavedMovies';
 import useMovies from 'hooks/useMovies';
+import { LocalStorage } from 'services/localStorageService';
 
 function Movies() {
   // const { initialMovies, isError, isLoading } = useLoadMovies();
@@ -32,7 +33,11 @@ function Movies() {
       <Header />
       <main className='movies'>
         <section className='movies__container'>
-          <SearchForm handleSearch={handleSearch} />
+          <SearchForm
+            defaultIsChecked={LocalStorage.getCheckboxValue()}
+            defaultSearchValue={LocalStorage.getSearchValue()}
+            handleSearch={handleSearch}
+          />
 
           <MoviesCardListStates
             isError={isError || isSavedError}
