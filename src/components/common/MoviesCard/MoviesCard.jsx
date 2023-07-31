@@ -39,7 +39,7 @@ function MoviesCard({
     >
       <div className='movies-card__header'>
         <div className='movies-card__info'>
-          <h3 className='movies-card__title'>{movie.nameRU}</h3>
+          <h3 className='movies-card__title' title={movie.nameRu}>{movie.nameRU}</h3>
 
           <p className='movies-card__time'>{formattedTime}</p>
         </div>
