@@ -1,77 +1,64 @@
 import { useState, useCallback } from 'react';
 
 const useValidation = () => {
-  const [errorMessage, setErrorMessage] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const validateName = useCallback((newName) => {
     if (newName.trim().length === 0) {
-      setErrorMessage('Поле Имя обязательно для заполнения');
-      return false;
+      setNameError('Поле Имя обязательно для заполнения');
+      return;
     }
 
     if (newName.trim().length < 2 || newName.trim().length > 30) {
-      setErrorMessage(
-        'Имя должно содержать не менее 2 символов  и не более 30'
-      );
-      return false;
+      setNameError('Имя должно содержать не менее 2 символов  и не более 30');
+      return;
     }
 
     const nameRegex = /^[A-Za-zА-Яа-яЁё\s-]+$/;
     if (!nameRegex.test(newName)) {
-      setErrorMessage(
+      setNameError(
         'Имя должно содержать только латиницу, кириллицу, пробел или дефис'
       );
-      return false;
+      return;
     }
 
-    setErrorMessage('');
-    return true;
+    setNameError('');
   }, []);
 
   const validateEmail = useCallback((newEmail) => {
     if (newEmail.trim().length === 0) {
-      setErrorMessage('Поле Email обязательно для заполнения');
-      return false;
+      setEmailError('Поле Email обязательно для заполнения');
+      return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(newEmail)) {
-      setErrorMessage('Поле Email не соответствует шаблону почты');
-      return false;
+      setEmailError('Поле Email не соответствует шаблону почты');
+      return;
     }
 
-    setErrorMessage('');
-    return true;
+    setEmailError('');
   }, []);
 
-  const validateForm = useCallback((newName, newEmail) => {
-    if (!validateName(newName)) {
-      return false;
+  const validatePassword = useCallback((newPassword) => {
+    if (newPassword.trim().length === 0) {
+        setPasswordError('Поле Пароль обязательно для заполнения');
+        return;
     }
-
-    if (!validateEmail(newEmail)) {
-      return false;
-    }
-
-    return true;
-  }, [validateName, validateEmail]);
-
-  const validateResponse = useCallback((newMessage) => {
-    setErrorMessage(newMessage);
-  }, []);
-
-  const resetErrors = useCallback(() => {
-    setErrorMessage('');
+    setPasswordError('');
   }, []);
 
   return {
-    errorMessage,
+    nameError,
+    emailError,
+    passwordError,
     validateName,
     validateEmail,
-    validateResponse,
-    resetErrors,
-    validateForm,
-  };
+    validatePassword,
+    hasAnyError: nameError.length > 0 || emailError.length > 0 || passwordError.length > 0,
+  }
 };
 
 export default useValidation;

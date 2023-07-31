@@ -3,11 +3,22 @@ import './Register.css';
 import Logo from 'components/common/Logo/Logo';
 import { useState } from 'react';
 import useRegister from 'hooks/useRegister';
+import useValidation from 'hooks/useValidation';
 
 function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {
+    nameError,
+    emailError,
+    passwordError,
+    validateName,
+    validateEmail,
+    validatePassword,
+    hasAnyError,
+  } = useValidation();
+
   const { onSubmit, isEmptyForm, errorMessage } = useRegister({
     name,
     email,
@@ -16,14 +27,17 @@ function Register() {
 
   function handleNameChange(e) {
     setName(e.target.value);
+    validateName(e.target.value);
   }
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
+    validateEmail(e.target.value);
   }
 
   function handlePasswordChange(e) {
     setPassword(e.target.value);
+    validatePassword(e.target.value);
   }
 
   return (
@@ -43,6 +57,7 @@ function Register() {
             minLength={2}
             maxLength={30}
             required
+            errorMessage={nameError}
             value={name}
             onChange={handleNameChange}
           />
@@ -55,6 +70,7 @@ function Register() {
             uniqId='email'
             placeholder='Введите email'
             required
+            errorMessage={emailError}
             value={email}
             onChange={handleEmailChange}
           />
@@ -67,6 +83,7 @@ function Register() {
             uniqId='password'
             placeholder='Введите пароль'
             required
+            errorMessage={passwordError}
             value={password}
             onChange={handlePasswordChange}
           />
@@ -82,7 +99,7 @@ function Register() {
           <button
             className='register__submit'
             type='submit'
-            disabled={isEmptyForm}
+            disabled={isEmptyForm || hasAnyError}
           >
             Зарегистрироваться
           </button>
