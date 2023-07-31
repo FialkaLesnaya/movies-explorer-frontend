@@ -86,14 +86,31 @@ function App() {
             }
           />
 
-          <Route path='/signin' element={<Login handleLogin={handleLogin} />} />
+          <Route
+            path='/signin'
+            element={
+              <ProtectedRouteElement loggedIn={loggedIn} isAuth>
+                <Login handleLogin={handleLogin} />
+              </ProtectedRouteElement>
+            }
+          />
 
-          <Route path='/signup' element={<Register />} />
+          <Route
+            path='/signup'
+            element={
+              <ProtectedRouteElement loggedIn={loggedIn} isAuth>
+                <Register />
+              </ProtectedRouteElement>
+            }
+          />
 
           <Route path='*' element={<ErrorPage />} />
         </Routes>
-        
-        <NotificationDialog isOpened={isErrorOpened} handleClose={setIsErrorOpened} />
+
+        <NotificationDialog
+          isOpened={isErrorOpened}
+          handleClose={setIsErrorOpened}
+        />
       </div>
     </CurrentUserContext.Provider>
   );
