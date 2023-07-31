@@ -35,7 +35,7 @@ function App() {
     LocalStorage.reset();
     setLoggedIn(false);
     setCurrentUser(currentUserObject);
-    navigate('/signin', { replace: true });
+    navigate('/', { replace: true });
   }, [navigate]);
 
   useEffect(() => {
