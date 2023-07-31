@@ -35,7 +35,7 @@ const useRegister = (formData, handleLogin) => {
           setIsLoading(false);
         });
     },
-    [formData, isEmptyForm, navigate]
+    [formData, isEmptyForm, navigate, handleLogin]
   );
 
   return {
