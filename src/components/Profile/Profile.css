@@ -32,7 +32,17 @@
   text-align: center;
   color: #ff4062;
   position: absolute;
-  top: -45px;
+  top: -25px;
+}
+
+.profile__input-error {
+  font-size: 10px;
+  margin: 0;
+  font-weight: 400;
+  text-align: center;
+  color: #ff4062;
+  position: absolute;
+  bottom: -15px;
 }
 
 .profile__button {
@@ -72,6 +82,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .profile__form-item + .profile__form-item {

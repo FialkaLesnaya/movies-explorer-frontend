@@ -3,19 +3,43 @@ import './Profile.css';
 import Header from 'components/common/Header/Header';
 import { CurrentUserContext } from 'contexts/CurrentUserContext';
 import useEditProfile from 'hooks/useEditProfile';
+import useValidation from 'hooks/useValidation';
 
 function Profile({ handleUserDataChange, handeLogOut }) {
   const currentUser = useContext(CurrentUserContext);
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const {
-    name,
-    email,
-    onSubmit,
-    errorMessage,
-    formDisabled,
-    handleNameChange,
-    handleEmailChange,
-  } = useEditProfile(currentUser, handleUserDataChange);
+    nameError,
+    emailError,
+    validateName,
+    validateEmail,
+    hasAnyError,
+  } = useValidation();
+  const { onSubmit, isEmptyForm, errorMessage } = useEditProfile(
+    {
+      name,
+      email,
+    },
+    handleUserDataChange
+  );
+  useEffect(() => {
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+  }, [currentUser]);
+
+  const hasSameValue = name === currentUser.name && email === currentUser.email;
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+    validateName(e.target.value);
+  }
+
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
+    validateEmail(e.target.value);
+  }
 
   return (
     <>
@@ -42,6 +66,8 @@ function Profile({ handleUserDataChange, handeLogOut }) {
                 value={name}
                 onChange={handleNameChange}
               />
+
+              {nameError.length > 0 && (<p className='profile__input-error'>{nameError}</p>)}
             </div>
 
             <div className='profile__form-item'>
@@ -58,6 +84,8 @@ function Profile({ handleUserDataChange, handeLogOut }) {
                 value={email}
                 onChange={handleEmailChange}
               />
+
+              {emailError.length > 0 && (<p className='profile__input-error'>{emailError}</p>)}
             </div>
 
             <div className='profile__actions'>
@@ -68,7 +96,7 @@ function Profile({ handleUserDataChange, handeLogOut }) {
               <button
                 className='profile__button'
                 type='submit'
-                disabled={formDisabled}
+                disabled={isEmptyForm || hasSameValue || hasAnyError}
               >
                 Редактировать
               </button>
