@@ -11,8 +11,6 @@ import useMovies from 'hooks/useMovies';
 import { LocalStorage } from 'services/localStorageService';
 
 function Movies() {
-  // const { initialMovies, isError, isLoading } = useLoadMovies();
-  // const { movies, handleSearch, hasSearchValue } = useSearch({ initialMovies });
   const { cardLimit, handleLoadMore } = useCardLimit();
   const {
     savedMovies,
