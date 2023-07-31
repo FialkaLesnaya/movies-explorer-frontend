@@ -15,7 +15,6 @@ function Movies() {
   const {
     savedMovies,
     isSavedError,
-    isLikeError,
     isSavedLoading,
     onSetLike,
     onDeleteLike,
