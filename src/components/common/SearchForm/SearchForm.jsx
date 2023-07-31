@@ -2,7 +2,7 @@ import FilterCheckbox from 'components/common/FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 import { useCallback,  useState } from 'react';
 
-function SearchForm({ handleSearch, defaultIsChecked = false, defaultSearchValue = '' }) {
+function SearchForm({ handleSearch, defaultIsChecked = false, defaultSearchValue = '', canFilterWithoutSearch = false }) {
   const [searchValue, setSearchValue] = useState(defaultSearchValue);
   const [isChecked, setIsChecked] = useState(defaultIsChecked);
   const [isError, setIsError] = useState(false);
@@ -40,10 +40,10 @@ function SearchForm({ handleSearch, defaultIsChecked = false, defaultSearchValue
   const onCheckboxChange = useCallback(() => {
     setIsChecked(!isChecked);
 
-    if (searchValue.length > 0) {
+    if (searchValue.length > 0 || canFilterWithoutSearch) {
       handleSearch(!isChecked, searchValue);
     }
-  }, [isChecked, searchValue, handleSearch]);
+  }, [isChecked, searchValue, handleSearch, canFilterWithoutSearch]);
 
   return (
     <form className='search-form' onSubmit={onSubmit}>

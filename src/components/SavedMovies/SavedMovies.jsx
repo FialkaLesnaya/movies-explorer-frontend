@@ -18,6 +18,7 @@ function SavedMovies() {
   } = useSavedMovies();
   const { movies, handleSearch, hasSearchValue } = useSearch({
     initialMovies: savedMovies,
+    hasPreselectedMovies: true,
   });
 
   return (
@@ -25,20 +26,20 @@ function SavedMovies() {
       <Header />
       <main className='saved-movies'>
         <section className='saved-movies__container'>
-          <SearchForm handleSearch={handleSearch} />
+          <SearchForm handleSearch={handleSearch} canFilterWithoutSearch />
 
           <MoviesCardListStates
             isError={isSavedError}
             isLoading={isSavedLoading}
-            nothingFound={savedMovies.length === 0 && hasSearchValue}
-            tryToSearch={savedMovies.length === 0 && !hasSearchValue}
+            nothingFound={movies.length === 0 && hasSearchValue}
+            tryToSearch={movies.length === 0 && !hasSearchValue}
           />
 
-          {savedMovies.length > 0 && (
+          {movies.length > 0 && (
             <MoviesCardList
               savedMovies={savedMovies}
-              cardList={savedMovies}
-              limit={savedMovies.length}
+              cardList={movies}
+              limit={movies.length}
               isFavoriteBlock
               onSetLike={onSetLike}
               onDeleteLike={onDeleteLike}
