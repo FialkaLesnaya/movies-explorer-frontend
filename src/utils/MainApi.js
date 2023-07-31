@@ -1,3 +1,5 @@
+import { LocalStorage } from 'services/localStorageService';
+
 class MainApiService {
   constructor(options) {
     this.baseUrl = options.baseUrl;
@@ -19,7 +21,7 @@ class MainApiService {
   register(name, password, email) {
     return this._request(`${this.baseUrl}/signup`, {
       method: 'POST',
-      headers: this.headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: name,
         password: password,
@@ -31,7 +33,7 @@ class MainApiService {
   login(password, email) {
     return this._request(`${this.baseUrl}/signin`, {
       method: 'POST',
-      headers: this.headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         password: password,
         email: email,
@@ -42,31 +44,31 @@ class MainApiService {
   editProfile(name, email) {
     return this._request(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: name,
         email: email,
       }),
     });
   }
-  
+
   checkMe() {
     return this._request(`${this.baseUrl}/users/me`, {
-      method: "GET",
-      headers: {
-        ...this.headers,
-      },
+      method: 'GET',
+      headers: this._getHeaders(),
     });
   }
 
   loadSavedMovies() {
-    return this._request(`${this.baseUrl}/movies`, { headers: this.headers });
+    return this._request(`${this.baseUrl}/movies`, {
+      headers: this._getHeaders(),
+    });
   }
 
   likeMovie(data) {
     return this._request(`${this.baseUrl}/movies`, {
       method: 'POST',
-      headers: this.headers,
+      headers: this._getHeaders(),
       body: JSON.stringify(data),
     });
   }
@@ -74,15 +76,21 @@ class MainApiService {
   deleteLikeMovie(movieId) {
     return this._request(`${this.baseUrl}/movies/${movieId}`, {
       method: 'DELETE',
-      headers: this.headers,
+      headers: this._getHeaders(),
     });
+  }
+
+  _getHeaders() {
+    return {
+      ...this.headers,
+      authorization: LocalStorage.getToken(),
+    };
   }
 }
 
 export const MainApi = new MainApiService({
   baseUrl: 'http://localhost:3001',
   headers: {
-    authorization: localStorage.getItem('JWT_SECRET_KEY'),
     'Content-Type': 'application/json',
   },
 });
