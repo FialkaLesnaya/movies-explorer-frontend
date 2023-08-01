@@ -89,7 +89,7 @@ class MainApiService {
 }
 
 export const MainApi = new MainApiService({
-  baseUrl: 'http://localhost:3001',
+  baseUrl: 'https://api.listik-fialki.nomoreparties.sbs',
   headers: {
     'Content-Type': 'application/json',
   },

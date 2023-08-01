@@ -15,3 +15,6 @@
 **Ссылки**
 * [Ссылка на Github](https://github.com/FialkaLesnaya/movies-explorer-frontend)
 * [Ссылка на макет на Яндекс диске](https://disk.yandex.ru/d/QGAuPcWjxCw1YA)
+* [Ссылка на сайт](https://listik-fialki.nomoreparties.sbs/)
+* [Ссылка на Pull request](https://github.com/FialkaLesnaya/movies-explorer-frontend/pull/2)
+
