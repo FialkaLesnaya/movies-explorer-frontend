@@ -9,7 +9,7 @@ import Header from 'components/common/Header/Header';
 function Main() {
   return (
     <>
-      <Header isMainPage />
+      <Header />
 
       <main>
         <Promo />
@@ -17,7 +17,7 @@ function Main() {
         <Techs />
         <AboutMe />
       </main>
-      
+
       <Footer />
     </>
   );

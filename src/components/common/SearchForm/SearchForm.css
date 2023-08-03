@@ -60,6 +60,19 @@
   padding-bottom: 15px;
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 30px;
+  position: relative;
+}
+
+.search-form__error-text {
+  font-size: 12px;
+  margin: 0;
+  font-weight: 400;
+  text-align: center;
+  color: #ff4062;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -25px;
 }
 
 @media screen and (max-width: 1023px) {

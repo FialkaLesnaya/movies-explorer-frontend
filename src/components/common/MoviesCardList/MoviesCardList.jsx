@@ -1,13 +1,37 @@
+import { useCallback } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-function MoviesCardList({ cardList, isFavoriteBlock = false }) {
+function MoviesCardList({
+  cardList,
+  isFavoriteBlock = false,
+  limit = 5,
+  onSetLike,
+  onDeleteLike,
+  savedMovies = [],
+}) {
+  const getLikedId = useCallback((movieId) => {
+    const savedMovie = savedMovies.filter(item => item.movieId === movieId)[0];
+
+    if (savedMovie) {
+      return savedMovie._id;
+    }
+
+    return null;
+  }, [savedMovies]);
+
   return (
     <div className='movies-card-list'>
-      {cardList.length === 0 && (<p className='movies-card-list__empty-text'>Результатов не найдено</p>)}
-
-      {cardList.map((item) => (
-        <MoviesCard item={item} isFavoriteBlock={isFavoriteBlock} />
+      {cardList.slice(0, limit).map((item) => (
+        <MoviesCard
+          key={item.movieId}
+          movie={item}
+          likedId={getLikedId(item.movieId)}
+          isLiked={savedMovies.map(item => item.movieId).includes(item.movieId)}
+          isFavoriteBlock={isFavoriteBlock}
+          onSetLike={onSetLike}
+          onDeleteLike={onDeleteLike}
+        />
       ))}
     </div>
   );

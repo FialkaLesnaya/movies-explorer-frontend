@@ -19,7 +19,7 @@ function NavTab() {
   return (
     <div className='nav-tab'>
       {tabs.map((item) => (
-        <a href={item.link} className='nav-tab__item'>
+        <a key={item.title} href={item.link} className='nav-tab__item'>
           {item.title}
         </a>
       ))}

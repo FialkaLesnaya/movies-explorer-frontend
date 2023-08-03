@@ -26,7 +26,6 @@
 .login__submit {
   width: 100%;
   height: 45px;
-  margin-top: 221px;
   background-color: #000;
   border-radius: 3px;
   flex-shrink: 0;
@@ -39,8 +38,28 @@
   line-height: normal;
 }
 
+.login__actions {
+  margin-top: 221px;
+  position: relative;
+}
+
+.login__error {
+  font-size: 12px;
+  margin: 0;
+  font-weight: 400;
+  text-align: center;
+  color: #ff4062;
+  position: absolute;
+  top: -25px
+}
+
 .login__submit:hover {
   opacity: 0.6;
+}
+
+.login__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .login__info {
@@ -91,6 +110,9 @@
 
   .login__submit {
     font-size: 14px;
+  }
+
+  .login__actions {
     margin-top: 309px;
   }
 

@@ -1,6 +1,7 @@
 .movies-card {
   background: #fdfdfd;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
 }
 
 .movies-card__header {
@@ -17,6 +18,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .movies-card__time {
@@ -26,6 +29,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.movies-card__info {
+  max-width: calc(100% - 34px);
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .movies-card__photo {
@@ -41,7 +50,7 @@
   border-radius: 50%;
   cursor: pointer;
   background: #fff no-repeat center/cover;
-  transition: opacity ease .4s;
+  transition: opacity ease 0.4s;
 }
 
 .movies-card__action:hover {

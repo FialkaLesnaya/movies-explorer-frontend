@@ -1,11 +1,16 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import AccountLinkButton from '../AccountLinkButton/AccountLinkButton';
 import Logo from '../Logo/Logo';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
 import './Header.css';
+import { CurrentUserContext } from 'contexts/CurrentUserContext';
+import { Link, NavLink } from 'react-router-dom';
 
-function Header({ isMainPage }) {
+function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const currentUserContext = useContext(CurrentUserContext);
+  const loggedIn =
+    currentUserContext.name !== '' && currentUserContext.email !== '';
 
   const openMenuClick = useCallback(() => {
     setIsMenuOpen(true);
@@ -19,42 +24,52 @@ function Header({ isMainPage }) {
     <header className='header'>
       <Logo />
 
-      {!isMainPage && (
+      {loggedIn && (
         <nav className='header__nav'>
-          <a
-            href='/movies'
-            className='header__link-base header__nav-link header__nav-link--active'
+          <NavLink
+            to='/movies'
+            className={({ isActive }) =>
+              'header__link-base header__nav-link' + (isActive ? ' header__nav-link--active' : '')
+            }
           >
             Фильмы
-          </a>
+          </NavLink>
 
-          <a
-            href='/saved-movies'
-            className='header__link-base header__nav-link'
+          <NavLink
+          className={({ isActive }) =>
+            'header__link-base header__nav-link' + (isActive ? ' header__nav-link--active' : '')
+          }
+            to='/saved-movies'
           >
             Сохраненные фильмы
-          </a>
+          </NavLink>
         </nav>
       )}
 
-      {isMainPage && (
+      {!loggedIn && (
         <nav className='header__auth-nav'>
-          <a href='/signup' className='header__link-base header__auth-link'>
+          <Link className='header__link-base header__auth-link' to='/signup' >
             Регистрация
-          </a>
+          </Link>
 
-          <a
-            href='/signin'
+          <Link
             className='header__link-base header__auth-link header__auth-link--button'
+            to='/signin'
           >
             Войти
-          </a>
+          </Link>
         </nav>
       )}
 
-      {!isMainPage && <div className='header__menu-button' onClick={openMenuClick}></div>}
+      {loggedIn && (
+        <div className='header__menu-button' onClick={openMenuClick}></div>
+      )}
 
-      {!isMainPage && (<div className='header__account-link'><AccountLinkButton /></div>)}
+      {loggedIn && (
+        <div className='header__account-link'>
+          <AccountLinkButton />
+        </div>
+      )}
 
       <MobileNavigation isMenuOpen={isMenuOpen} onCloseMenu={closeMenuClick} />
     </header>

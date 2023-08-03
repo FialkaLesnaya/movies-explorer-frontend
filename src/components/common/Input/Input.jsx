@@ -1,8 +1,8 @@
 import './Input.css';
 
-function Input({ isError = false, text='', type = 'text', minLength = null, maxLength = null, uniqId='input-name', placeholder = '', required = false }) {
+function Input({ errorMessage = '', value = '', text='', type = 'text', minLength = null, maxLength = null, uniqId='input-name', placeholder = '', required = false, onChange }) {
   return (
-    <div className={'input' + (isError ? ' input--error' : '')}>
+    <div className={'input' + (errorMessage.length > 0 ? ' input--error' : '')}>
       <label htmlFor={uniqId} className='input__label'>
         {text}
       </label>
@@ -14,11 +14,13 @@ function Input({ isError = false, text='', type = 'text', minLength = null, maxL
         minLength={minLength}
         maxLength={maxLength}
         name={uniqId}
+        value={value}
         placeholder={placeholder}
         required={required}
+        onChange={onChange}
       />
 
-      {isError && <p className='input__error'>Что-то пошло не так...</p>}
+      {errorMessage.length > 0 && <p className='input__error'>{errorMessage}</p>}
     </div>
   );
 }

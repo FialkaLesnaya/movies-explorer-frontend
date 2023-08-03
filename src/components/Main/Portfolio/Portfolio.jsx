@@ -23,9 +23,9 @@ function Portfolio() {
       <ul className='portfolio__list'>
         {links.map((item) => (
           <li
+              key={item.title}
               className='portfolio__item-container'>
             <a
-              key={item.title}
               href={item.link}
               target='_blank'
               rel='noreferrer'

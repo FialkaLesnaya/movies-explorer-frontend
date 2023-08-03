@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom';
 import './Logo.css';
 
 function Logo() {
-  return <a href='/' className='logo'></a>;
+  return (
+    <Link className='logo' to='/' />
+  );
 }
 
 export default Logo;

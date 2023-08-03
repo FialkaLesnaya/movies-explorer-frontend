@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import AccountLinkButton from '../AccountLinkButton/AccountLinkButton';
 import './MobileNavigation.css';
 
@@ -6,17 +7,14 @@ function MobileNavigation({ onCloseMenu, isMenuOpen }) {
     {
       title: 'Главная',
       link: '/',
-      isActive: false,
     },
     {
       title: 'Фильмы',
       link: '/movies',
-      isActive: true,
     },
     {
       title: 'Сохранённые фильмы',
       link: '/saved-movies',
-      isActive: false,
     },
   ];
   return (
@@ -34,16 +32,16 @@ function MobileNavigation({ onCloseMenu, isMenuOpen }) {
 
         <ul className='mobile-navigation__list'>
           {links.map((item) => (
-            <li className='mobile-navigation__item'>
-              <a
-                href={item.link}
-                className={
+            <li key={item.title} className='mobile-navigation__item'>
+              <NavLink
+                className={({ isActive }) =>
                   'mobile-navigation__item-link' +
-                  (item.isActive ? ' mobile-navigation__item-link--active' : '')
+                  (isActive ? ' mobile-navigation__item-link--active' : '')
                 }
+                to={item.link}
               >
                 {item.title}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
